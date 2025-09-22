@@ -20,7 +20,7 @@ def length(x):
     lngth=disc_dst.sum()
     return lngth
 
-def plotter(x,p0,p1,u0,u1,padd=2):
+def plotter(x,p0,p1,u0,u1,cad=None,padd=2):
     fig=plt.figure(figsize=(20,20))
     gs=gridspec.GridSpec(2,3,figure=fig,height_ratios=[1,2])
     lmt0=float(min(np.concat((p0,p1))))-padd
@@ -38,7 +38,6 @@ def plotter(x,p0,p1,u0,u1,padd=2):
     ax1.set_xlim(lmt0,lmt1)
     ax1.set_ylim(lmt0,lmt1)
     ax1.grid(True)
-    ax1.legend()
 
     # yz plane
     ax2=fig.add_subplot(gs[0,1])
@@ -78,5 +77,14 @@ def plotter(x,p0,p1,u0,u1,padd=2):
     ax4.set_zlabel('Z',labelpad=20)
     #ax4.legend()
     ax4.view_init(elev=45,azim=-45)
+
+    if cad is not None:
+        ax1.plot(cad[:,0],cad[:,1],label='CAD')
+        ax2.plot(cad[:,1],cad[:,2])
+        ax3.plot(cad[:,2],cad[:,0])
+        ax4.plot(cad[:,0],cad[:,1],cad[:,2])
+
+
+    ax1.legend()
     plt.tight_layout()
     plt.show()
