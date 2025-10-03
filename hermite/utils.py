@@ -65,9 +65,9 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,pos=0.7):
     
     # 3d view
     ax4=fig.add_subplot(gs[1,:],projection='3d')
-    ax4.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
+    ax4.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite spline')
     ax4.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
-    ax4.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
+    ax4.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit vectors')
     ax4.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
     ax4.set_title('3D View')
     ax4.set_xlabel('X',labelpad=20)
