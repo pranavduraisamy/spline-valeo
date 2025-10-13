@@ -20,7 +20,7 @@ def length(x):
     lngth=disc_dst.sum()
     return lngth
 
-def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,pos=0.7):
+def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7):
     fig=plt.figure(figsize=(20,20))
     gs=gridspec.GridSpec(2,3,figure=fig,height_ratios=[1,2])
 
@@ -87,6 +87,12 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,pos=0.7):
         ax3.plot(tgt[:,0],tgt[:,1],tgt[:,2])
         ax4.plot(tgt[:,0],tgt[:,1],tgt[:,2],label='Arc length constrained hermite spline')
 
+    if prt is not None:
+        ax1.plot(prt[:,0],prt[:,1],prt[:,2])
+        ax2.plot(prt[:,0],prt[:,1],prt[:,2])
+        ax3.plot(prt[:,0],prt[:,1],prt[:,2])
+        ax4.plot(prt[:,0],prt[:,1],prt[:,2],label='Prototype')
+        
     ax4.legend(bbox_to_anchor=[pos,1])
     plt.tight_layout()
     plt.show()
