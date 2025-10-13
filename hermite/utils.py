@@ -92,7 +92,63 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7):
         ax2.plot(prt[:,0],prt[:,1],prt[:,2])
         ax3.plot(prt[:,0],prt[:,1],prt[:,2])
         ax4.plot(prt[:,0],prt[:,1],prt[:,2],label='Prototype')
-        
+
     ax4.legend(bbox_to_anchor=[pos,1])
     plt.tight_layout()
     plt.show()
+
+def plane_normal(df, start, end):
+    mp=df.iloc[len(df)//2].to_numpy()
+    v1=end-start
+    v2=mp-start
+    normal=np.cross(v1, v2)
+    return normal / np.linalg.norm(normal)
+    
+def rotate(crv1,crv2):
+    p1_s=crv1.iloc[0].to_numpy()
+    p1_e=crv1.iloc[-1].to_numpy()
+    p2_s=crv2.iloc[0].to_numpy()
+    p2_e=crv2.iloc[-1].to_numpy()
+    trans=p1_s-p2_s
+    crv2_trans=crv2+trans
+    v1=p1_e-p1_s
+    v2=p2_e-p2_s
+    v1=v1/np.linalg.norm(v1)
+    v2=v2/np.linalg.norm(v2)
+    axs=np.cross(v2, v1)
+    axs_norm=np.linalg.norm(axs)
+    if axs_norm<1e-8:
+        R=np.eye(3)
+    else:
+        axs=axs/axs_norm
+        ang=np.arccos(np.clip(np.dot(v2, v1), -1.0, 1.0))
+        K=np.array([
+            [0, -axs[2], axs[1]],
+            [axs[2], 0, -axs[0]],
+            [-axs[1], axs[0], 0]
+        ])
+        R=np.eye(3)+np.sin(ang)*K+(1-np.cos(ang))*(K @ K)
+    pts=crv2_trans.to_numpy()
+    pts2=(R @ (pts-p1_s).T).T+p1_s
+    crv2_algn=pd.DataFrame(pts2, columns=['X','Y','Z'])
+    p2_s=crv2_algn.iloc[0].to_numpy()
+    p2_e  =crv2_algn.iloc[-1].to_numpy()
+    axs=p1_e-p1_s
+    axs=axs/np.linalg.norm(axs)
+    n1=plane_normal(crv1, p1_s, p1_e)
+    n2=plane_normal(crv2_algn, p2_s, p2_e)
+    dot=np.clip(np.dot(n2, n1), -1.0, 1.0)
+    ang=np.arccos(dot)
+    if np.isnan(ang) or abs(ang) < 1e-8:
+        R=np.eye(3)
+    else:
+        K=np.array([
+            [0, -axs[2], axs[1]],
+            [axs[2], 0, -axs[0]],
+            [-axs[1], axs[0], 0]
+        ])
+        R=np.eye(3)+np.sin(ang)*K+(1-np.cos(ang))*(K @ K)
+    pts=crv2_algn.to_numpy()
+    pts2=(R @ (pts-p1_s).T).T+p1_s
+    crv2_rot=pd.DataFrame(pts2, columns=['x','y','z'])
+    return crv2_rot
