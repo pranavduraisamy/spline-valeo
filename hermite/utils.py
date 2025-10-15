@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.gridspec as gridspec
+import plotly.graph_objects as go
 plt.style.use('fivethirtyeight')
 plt.rcParams['font.family']='Times New Roman'
 plt.rcParams['font.size']=24
@@ -20,82 +21,105 @@ def length(x):
     lngth=disc_dst.sum()
     return lngth
 
-def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7):
-    fig=plt.figure(figsize=(20,20))
-    gs=gridspec.GridSpec(2,3,figure=fig,height_ratios=[1,2])
+def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7,cne=5,intr='s'):
+    if intr=='s':
+        fig=plt.figure(figsize=(20,20))
+        gs=gridspec.GridSpec(2,3,figure=fig,height_ratios=[1,2])
 
-    # xy plane
-    ax1=fig.add_subplot(gs[0,0],projection='3d')
-    ax1.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
-    ax1.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
-    ax1.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
-    ax1.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
-    ax1.set_title('XY Plane')
-    ax1.set_xlabel('X',labelpad=40)
-    ax1.set_ylabel('Y',labelpad=40)
-    ax1.set_zlabel('')
-    ax1.set_zticks([])
-    ax1.view_init(elev=90,azim=-90)
+        # xy plane
+        ax1=fig.add_subplot(gs[0,0],projection='3d')
+        ax1.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
+        ax1.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
+        ax1.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
+        ax1.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
+        ax1.set_title('XY Plane')
+        ax1.set_xlabel('X',labelpad=40)
+        ax1.set_ylabel('Y',labelpad=40)
+        ax1.set_zlabel('')
+        ax1.set_zticks([])
+        ax1.view_init(elev=90,azim=-90)
 
-    # yz plane
-    ax2=fig.add_subplot(gs[0,1],projection='3d')
-    ax2.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
-    ax2.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
-    ax2.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
-    ax2.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
-    ax2.set_title('YZ Plane')
-    ax2.set_xlabel('')
-    ax2.set_ylabel('Y',labelpad=40)
-    ax2.set_zlabel('Z',labelpad=40)
-    ax2.set_xticks([])
-    ax2.view_init(elev=0,azim=0)
+        # yz plane
+        ax2=fig.add_subplot(gs[0,1],projection='3d')
+        ax2.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
+        ax2.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
+        ax2.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
+        ax2.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
+        ax2.set_title('YZ Plane')
+        ax2.set_xlabel('')
+        ax2.set_ylabel('Y',labelpad=40)
+        ax2.set_zlabel('Z',labelpad=40)
+        ax2.set_xticks([])
+        ax2.view_init(elev=0,azim=0)
 
-    # xz plane
-    ax3=fig.add_subplot(gs[0,2],projection='3d')
-    ax3.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
-    ax3.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
-    ax3.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
-    ax3.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
-    ax3.set_title('XZ Plane')
-    ax3.set_xlabel('X',labelpad=40)
-    ax3.set_ylabel('')
-    ax3.set_zlabel('Z',labelpad=40)
-    ax3.set_yticks([])
-    ax3.view_init(elev=0,azim=-90)
+        # xz plane
+        ax3=fig.add_subplot(gs[0,2],projection='3d')
+        ax3.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
+        ax3.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
+        ax3.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
+        ax3.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
+        ax3.set_title('XZ Plane')
+        ax3.set_xlabel('X',labelpad=40)
+        ax3.set_ylabel('')
+        ax3.set_zlabel('Z',labelpad=40)
+        ax3.set_yticks([])
+        ax3.view_init(elev=0,azim=-90)
+        
+        # 3d view
+        ax4=fig.add_subplot(gs[1,:],projection='3d')
+        ax4.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite spline')
+        ax4.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
+        ax4.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit vectors')
+        ax4.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
+        ax4.set_title('3D View')
+        ax4.set_xlabel('X',labelpad=20)
+        ax4.set_ylabel('Y',labelpad=20)
+        ax4.set_zlabel('Z',labelpad=20)
+        ax4.view_init(elev=45,azim=-45)
+
+        if cad is not None:
+            ax1.plot(cad[:,0],cad[:,1],cad[:,2])
+            ax2.plot(cad[:,0],cad[:,1],cad[:,2])
+            ax3.plot(cad[:,0],cad[:,1],cad[:,2])
+            ax4.plot(cad[:,0],cad[:,1],cad[:,2],label='CAD')
+
+        if tgt is not None:
+            ax1.plot(tgt[:,0],tgt[:,1],tgt[:,2])
+            ax2.plot(tgt[:,0],tgt[:,1],tgt[:,2])
+            ax3.plot(tgt[:,0],tgt[:,1],tgt[:,2])
+            ax4.plot(tgt[:,0],tgt[:,1],tgt[:,2],label='Arc length constrained hermite spline')
+
+        if prt is not None:
+            ax1.plot(prt[:,0],prt[:,1],prt[:,2])
+            ax2.plot(prt[:,0],prt[:,1],prt[:,2])
+            ax3.plot(prt[:,0],prt[:,1],prt[:,2])
+            ax4.plot(prt[:,0],prt[:,1],prt[:,2],label='Prototype')
+
+        ax4.legend(bbox_to_anchor=[pos,1])
+        plt.tight_layout()
+        plt.show()
     
-    # 3d view
-    ax4=fig.add_subplot(gs[1,:],projection='3d')
-    ax4.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite spline')
-    ax4.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
-    ax4.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit vectors')
-    ax4.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
-    ax4.set_title('3D View')
-    ax4.set_xlabel('X',labelpad=20)
-    ax4.set_ylabel('Y',labelpad=20)
-    ax4.set_zlabel('Z',labelpad=20)
-    ax4.view_init(elev=45,azim=-45)
+    elif intr=='d':
+        fig = go.Figure()
+        fig.add_trace(go.Scatter3d(x=x[:,0],y=x[:,1],z=x[:,2],mode='lines',name='Unoptimized hermite spline',line=dict(color='darkslategray',width=6)))
+        fig.add_trace(go.Scatter3d(x=[p0[0],p1[0]],y=[p0[1],p1[1]],z=[p0[2],p1[2]],mode='markers',name='Points',marker=dict(size=5,color='red')))
+        fig.add_trace(go.Cone(x=[p0[0]],y=[p0[1]],z=[p0[2]],u=[u0[0]],v=[u0[1]],w=[u0[2]],colorscale='RdPu',sizemode='absolute',sizeref=cne,showscale=False,name='Unit vector at P0'))
+        fig.add_trace(go.Cone(x=[p1[0]],y=[p1[1]],z=[p1[2]],u=[u1[0]],v=[u1[1]],w=[u1[2]],colorscale='RdPu',sizemode='absolute',sizeref=cne,showscale=False,name='Unit vector at P1'))
 
-    if cad is not None:
-        ax1.plot(cad[:,0],cad[:,1],cad[:,2])
-        ax2.plot(cad[:,0],cad[:,1],cad[:,2])
-        ax3.plot(cad[:,0],cad[:,1],cad[:,2])
-        ax4.plot(cad[:,0],cad[:,1],cad[:,2],label='CAD')
+        if cad is not None:
+            fig.add_trace(go.Scatter3d(x=cad[:,0],y=cad[:,1],z=cad[:,2],mode='lines',name='CAD',line=dict(color='dodgerblue',width=6)))
 
-    if tgt is not None:
-        ax1.plot(tgt[:,0],tgt[:,1],tgt[:,2])
-        ax2.plot(tgt[:,0],tgt[:,1],tgt[:,2])
-        ax3.plot(tgt[:,0],tgt[:,1],tgt[:,2])
-        ax4.plot(tgt[:,0],tgt[:,1],tgt[:,2],label='Arc length constrained hermite spline')
+        if tgt is not None:
+            fig.add_trace(go.Scatter3d(x=tgt[:,0],y=tgt[:,1],z=tgt[:,2],mode='lines',name='Arc length constrained hermite spline',line=dict(color='darkorange',width=6)))
 
-    if prt is not None:
-        ax1.plot(prt[:,0],prt[:,1],prt[:,2])
-        ax2.plot(prt[:,0],prt[:,1],prt[:,2])
-        ax3.plot(prt[:,0],prt[:,1],prt[:,2])
-        ax4.plot(prt[:,0],prt[:,1],prt[:,2],label='Prototype')
+        if prt is not None:
+            fig.add_trace(go.Scatter3d(x=prt[:,0],y=prt[:,1],z=prt[:,2],mode='lines',name='Prototype',line=dict(color='forestgreen',width=6))) 
 
-    ax4.legend(bbox_to_anchor=[pos,1])
-    plt.tight_layout()
-    plt.show()
+        fig.update_layout(title='3D Projection',scene=dict(xaxis_title='X',yaxis_title='Y',zaxis_title='Z',camera=dict(eye=dict(x=1,y=-1,z=1))),font=dict(size=15,family='Times New Roman'),autosize=False,height=700,width=1200,legend=dict(x=0.02,y=0.98),margin=dict(l=20,r=20,t=40,b=20))
+        fig.update_scenes(camera_projection_type='orthographic')
+        fig.show()
+
+
 
 def plane_normal(df, start, end):
     mp=df.iloc[len(df)//2].to_numpy()

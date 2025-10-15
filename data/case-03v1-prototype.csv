@@ -7,8 +7,8 @@ Spline Length,217.62,,,
 1st  Vector  End Point ,,95.052,5.445,-31.956
 2nd Vector  Point ,,29.052,26.552,-35.639
 2nd  Vector  End Point ,,12.769,27.759,-34.885
-1st Vector Direction,,-0.032965,0.997747,0.058428
-2nd Vector Direction,,0.996202,-0.073825,-0.046162
+1st Vector Direction,,0.032965,-0.997747,-0.058428
+2nd Vector Direction,,-0.996202,0.073825,0.046162
 Point.1,,95.052,5.445,-31.956
 Point.2,,95.431,3.323,-32.334
 Point.3,,95.922,1.222,-32.703
