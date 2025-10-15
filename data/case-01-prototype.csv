@@ -1,4 +1,4 @@
-Parameter,L,X ,Y,Z
+Parameter,L,X,Y,Z
 Hose Length ,260.5,,,
 Spline Length,192.2,,,
 1st Vector Length,20,,,
@@ -7,7 +7,7 @@ Spline Length,192.2,,,
 1st  Vector  End Point ,,345.858,0.381,-30.444
 2nd Vector  Point ,,280.93,29.332,-56.674
 2nd  Vector  End Point ,,273.048,42.931,-54.899
-1st Vector Direction,,-0.006453,0.999842,-0.016572
+1st Vector Direction,,0.006453,-0.999842,0.016572
 2nd Vector Direction,,-0.498287,0.859716,0.112244
 Point.1,,345.858,0.381,-30.444
 Point.2,,346.016,-1.551,-30.332
