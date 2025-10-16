@@ -102,9 +102,10 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7,cne=5,intr='s'):
     elif intr=='d':
         fig = go.Figure()
         fig.add_trace(go.Scatter3d(x=x[:,0],y=x[:,1],z=x[:,2],mode='lines',name='Unoptimized hermite spline',line=dict(color='darkslategray',width=6)))
-        fig.add_trace(go.Scatter3d(x=[p0[0],p1[0]],y=[p0[1],p1[1]],z=[p0[2],p1[2]],mode='markers',name='Points',marker=dict(size=5,color='red')))
-        fig.add_trace(go.Cone(x=[p0[0]],y=[p0[1]],z=[p0[2]],u=[u0[0]],v=[u0[1]],w=[u0[2]],colorscale='RdPu',sizemode='absolute',sizeref=cne,showscale=False,name='Unit vector at P0'))
-        fig.add_trace(go.Cone(x=[p1[0]],y=[p1[1]],z=[p1[2]],u=[u1[0]],v=[u1[1]],w=[u1[2]],colorscale='RdPu',sizemode='absolute',sizeref=cne,showscale=False,name='Unit vector at P1'))
+        fig.add_trace(go.Scatter3d(x=[p0[0]],y=[p0[1]],z=[p0[2]],mode='markers',name='P0',marker=dict(size=5,color='red')))
+        fig.add_trace(go.Scatter3d(x=[p1[0]],y=[p1[1]],z=[p1[2]],mode='markers',name='P1',marker=dict(size=5,color='red')))
+        fig.add_trace(go.Cone(x=[p0[0]],y=[p0[1]],z=[p0[2]],u=[u0[0]],v=[u0[1]],w=[u0[2]],colorscale='RdPu',sizemode='absolute',sizeref=cne,showscale=False,name='Unit vector at P0',showlegend=True))
+        fig.add_trace(go.Cone(x=[p1[0]],y=[p1[1]],z=[p1[2]],u=[u1[0]],v=[u1[1]],w=[u1[2]],colorscale='RdPu',sizemode='absolute',sizeref=cne,showscale=False,name='Unit vector at P1',showlegend=True))
 
         if cad is not None:
             fig.add_trace(go.Scatter3d(x=cad[:,0],y=cad[:,1],z=cad[:,2],mode='lines',name='CAD',line=dict(color='dodgerblue',width=6)))
@@ -128,7 +129,8 @@ def plane_normal(df, start, end):
     normal=np.cross(v1, v2)
     return normal / np.linalg.norm(normal)
     
-def rotate(crv1,crv2):
+def rotate(crv1,crv2,x0,x1):
+    # translation
     p1_s=crv1.iloc[0].to_numpy()
     p1_e=crv1.iloc[-1].to_numpy()
     p2_s=crv2.iloc[0].to_numpy()
@@ -154,6 +156,8 @@ def rotate(crv1,crv2):
         R=np.eye(3)+np.sin(ang)*K+(1-np.cos(ang))*(K @ K)
     pts=crv2_trans.to_numpy()
     pts2=(R @ (pts-p1_s).T).T+p1_s
+    x0=R @ x0
+    x1=R @ x1
     crv2_algn=pd.DataFrame(pts2, columns=['X','Y','Z'])
     p2_s=crv2_algn.iloc[0].to_numpy()
     p2_e  =crv2_algn.iloc[-1].to_numpy()
@@ -173,6 +177,20 @@ def rotate(crv1,crv2):
         ])
         R=np.eye(3)+np.sin(ang)*K+(1-np.cos(ang))*(K @ K)
     pts=crv2_algn.to_numpy()
+    x0=R @ x0
+    x1=R @ x1
     pts2=(R @ (pts-p1_s).T).T+p1_s
     crv2_rot=pd.DataFrame(pts2, columns=['x','y','z'])
-    return crv2_rot
+    return crv2_rot,x0,x1
+
+def vector_compare(p0,p1,u0,u1,v0,v1):
+    print(f'Difference in angle between CAD & Prototype @P0 : {float(np.degrees(np.arccos(np.dot(u0,v0)))):.3f}')
+    print(f'Difference in angle between CAD & Prototype @P1 : {float(np.degrees(np.arccos(np.dot(u1,v1)))):.3f}')
+    fig = go.Figure()
+    fig.add_trace(go.Cone(x=[p0[0]],y=[p0[1]],z=[p0[2]],u=[u0[0]],v=[u0[1]],w=[u0[2]],colorscale='RdPu',sizemode='absolute',sizeref=7,showscale=False,name='CAD @P0',showlegend=True))
+    fig.add_trace(go.Cone(x=[p1[0]],y=[p1[1]],z=[p1[2]],u=[u1[0]],v=[u1[1]],w=[u1[2]],colorscale='RdPu',sizemode='absolute',sizeref=7,showscale=False,name='CAD @P1',showlegend=True))
+    fig.add_trace(go.Cone(x=[p0[0]],y=[p0[1]],z=[p0[2]],u=[v0[0]],v=[v0[1]],w=[v0[2]],colorscale='Greys',sizemode='absolute',sizeref=7,showscale=False,name='Prototype @P0',showlegend=True))
+    fig.add_trace(go.Cone(x=[p1[0]],y=[p1[1]],z=[p1[2]],u=[v1[0]],v=[v1[1]],w=[v1[2]],colorscale='Greys',sizemode='absolute',sizeref=7,showscale=False,name='Prototype @P1',showlegend=True))
+    fig.update_layout(title='Comparing Vectors',scene=dict(xaxis_title='X',yaxis_title='Y',zaxis_title='Z',camera=dict(eye=dict(x=1,y=-1,z=1))),font=dict(size=15,family='Times New Roman'),autosize=False,height=700,width=800,legend=dict(x=0.02,y=0.98),margin=dict(l=20,r=20,t=40,b=20))
+    fig.update_scenes(camera_projection_type='orthographic')
+    fig.show()
