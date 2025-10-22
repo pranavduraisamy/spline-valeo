@@ -21,7 +21,7 @@ def length(x):
     lngth=disc_dst.sum()
     return lngth
 
-def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7,cne=5,intr='s'):
+def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7,cne=5,intr='s',tgt_label='Arc length constrained hermite spline'):
     if intr=='s':
         fig=plt.figure(figsize=(20,20))
         gs=gridspec.GridSpec(2,3,figure=fig,height_ratios=[1,2])
@@ -87,7 +87,7 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7,cne=5,intr='s'):
             ax1.plot(tgt[:,0],tgt[:,1],tgt[:,2])
             ax2.plot(tgt[:,0],tgt[:,1],tgt[:,2])
             ax3.plot(tgt[:,0],tgt[:,1],tgt[:,2])
-            ax4.plot(tgt[:,0],tgt[:,1],tgt[:,2],label='Arc length constrained hermite spline')
+            ax4.plot(tgt[:,0],tgt[:,1],tgt[:,2],label=tgt_label)
 
         if prt is not None:
             ax1.plot(prt[:,0],prt[:,1],prt[:,2])
@@ -111,7 +111,7 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7,cne=5,intr='s'):
             fig.add_trace(go.Scatter3d(x=cad[:,0],y=cad[:,1],z=cad[:,2],mode='lines',name='CAD',line=dict(color='dodgerblue',width=6)))
 
         if tgt is not None:
-            fig.add_trace(go.Scatter3d(x=tgt[:,0],y=tgt[:,1],z=tgt[:,2],mode='lines',name='Arc length constrained hermite spline',line=dict(color='darkorange',width=6)))
+            fig.add_trace(go.Scatter3d(x=tgt[:,0],y=tgt[:,1],z=tgt[:,2],mode='lines',name=tgt_label,line=dict(color='darkorange',width=6)))
 
         if prt is not None:
             fig.add_trace(go.Scatter3d(x=prt[:,0],y=prt[:,1],z=prt[:,2],mode='lines',name='Prototype',line=dict(color='forestgreen',width=6))) 
