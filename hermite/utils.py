@@ -21,7 +21,7 @@ def length(x):
     lngth=disc_dst.sum()
     return lngth
 
-def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7,cne=5,intr='s',tgt_label='Arc length constrained hermite spline'):
+def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,siml=None,pos=0.7,cne=5,intr='s',tgt_label='Arc length constrained hermite spline'):
     if intr=='s':
         fig=plt.figure(figsize=(20,20))
         gs=gridspec.GridSpec(2,3,figure=fig,height_ratios=[1,2])
@@ -94,6 +94,12 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7,cne=5,intr='s',tgt_
             ax2.plot(prt[:,0],prt[:,1],prt[:,2])
             ax3.plot(prt[:,0],prt[:,1],prt[:,2])
             ax4.plot(prt[:,0],prt[:,1],prt[:,2],label='Prototype')
+        
+        if siml is not None:
+            ax1.plot(siml[:,0],siml[:,1],siml[:,2])
+            ax2.plot(siml[:,0],siml[:,1],siml[:,2])
+            ax3.plot(siml[:,0],siml[:,1],siml[:,2])
+            ax4.plot(siml[:,0],siml[:,1],siml[:,2],label='Simlulated')
 
         ax4.legend(bbox_to_anchor=[pos,1])
         plt.tight_layout()
@@ -115,6 +121,9 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,pos=0.7,cne=5,intr='s',tgt_
 
         if prt is not None:
             fig.add_trace(go.Scatter3d(x=prt[:,0],y=prt[:,1],z=prt[:,2],mode='lines',name='Prototype',line=dict(color='forestgreen',width=6))) 
+        
+        if siml is not None:
+            fig.add_trace(go.Scatter3d(x=siml[:,0],y=siml[:,1],z=siml[:,2],mode='lines',name='Simulated',line=dict(color='hotpink',width=6))) 
 
         fig.update_layout(title='3D Projection',scene=dict(xaxis_title='X',yaxis_title='Y',zaxis_title='Z',camera=dict(eye=dict(x=1,y=-1,z=1))),font=dict(size=15,family='Times New Roman'),autosize=False,height=700,width=1200,legend=dict(x=0.02,y=0.98),margin=dict(l=20,r=20,t=40,b=20))
         fig.update_scenes(camera_projection_type='orthographic')
