@@ -22,14 +22,14 @@ def length(x):
     lngth=disc_dst.sum()
     return lngth
 
-def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,siml=None,pos=0.7,cne=5,intr='s',tgt_label='Arc length constrained hermite spline'):
+def plotter(x,p0,p1,u0,u1,spl1=None,spl2=None,spl3=None,spl4=None,pos=0.7,cne=5,intr='s',x_label='Spline0',spl1_label='Spline1',spl2_label='Spline2',spl3_label='Spline3',spl4_label='Spline4'):
     if intr=='s':
         fig=plt.figure(figsize=(20,20))
         gs=gridspec.GridSpec(2,3,figure=fig,height_ratios=[1,2])
 
         # xy plane
         ax1=fig.add_subplot(gs[0,0],projection='3d')
-        ax1.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
+        ax1.plot(x[:,0],x[:,1],x[:,2],label=x_label)
         ax1.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
         ax1.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
         ax1.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
@@ -42,7 +42,7 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,siml=None,pos=0.7,cne=5,int
 
         # yz plane
         ax2=fig.add_subplot(gs[0,1],projection='3d')
-        ax2.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
+        ax2.plot(x[:,0],x[:,1],x[:,2],label=x_label)
         ax2.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
         ax2.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
         ax2.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
@@ -55,7 +55,7 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,siml=None,pos=0.7,cne=5,int
 
         # xz plane
         ax3=fig.add_subplot(gs[0,2],projection='3d')
-        ax3.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite Spline')
+        ax3.plot(x[:,0],x[:,1],x[:,2],label=x_label)
         ax3.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
         ax3.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit Vectors')
         ax3.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
@@ -68,7 +68,7 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,siml=None,pos=0.7,cne=5,int
         
         # 3d view
         ax4=fig.add_subplot(gs[1,:],projection='3d')
-        ax4.plot(x[:,0],x[:,1],x[:,2],label='Unoptimized hermite spline')
+        ax4.plot(x[:,0],x[:,1],x[:,2],label=x_label)
         ax4.scatter([p0[0],p1[0]],[p0[1],p1[1]],[p0[2],p1[2]],c='red',s=50,label='Points')
         ax4.quiver(p0[0],p0[1],p0[2],u0[0],u0[1],u0[2],color='slategrey',label='Unit vectors')
         ax4.quiver(p1[0],p1[1],p1[2],u1[0],u1[1],u1[2],color='slategrey')
@@ -78,57 +78,57 @@ def plotter(x,p0,p1,u0,u1,cad=None,tgt=None,prt=None,siml=None,pos=0.7,cne=5,int
         ax4.set_zlabel('Z',labelpad=20)
         ax4.view_init(elev=45,azim=-45)
 
-        if cad is not None:
-            ax1.plot(cad[:,0],cad[:,1],cad[:,2])
-            ax2.plot(cad[:,0],cad[:,1],cad[:,2])
-            ax3.plot(cad[:,0],cad[:,1],cad[:,2])
-            ax4.plot(cad[:,0],cad[:,1],cad[:,2],label='CAD')
+        if spl1 is not None:
+            ax1.plot(spl1[:,0],spl1[:,1],spl1[:,2])
+            ax2.plot(spl1[:,0],spl1[:,1],spl1[:,2])
+            ax3.plot(spl1[:,0],spl1[:,1],spl1[:,2])
+            ax4.plot(spl1[:,0],spl1[:,1],spl1[:,2],label=spl1_label)
 
-        if tgt is not None:
-            ax1.plot(tgt[:,0],tgt[:,1],tgt[:,2])
-            ax2.plot(tgt[:,0],tgt[:,1],tgt[:,2])
-            ax3.plot(tgt[:,0],tgt[:,1],tgt[:,2])
-            ax4.plot(tgt[:,0],tgt[:,1],tgt[:,2],label=tgt_label)
+        if spl2 is not None:
+            ax1.plot(spl2[:,0],spl2[:,1],spl2[:,2])
+            ax2.plot(spl2[:,0],spl2[:,1],spl2[:,2])
+            ax3.plot(spl2[:,0],spl2[:,1],spl2[:,2])
+            ax4.plot(spl2[:,0],spl2[:,1],spl2[:,2],label=spl2_label)
 
-        if prt is not None:
-            ax1.plot(prt[:,0],prt[:,1],prt[:,2])
-            ax2.plot(prt[:,0],prt[:,1],prt[:,2])
-            ax3.plot(prt[:,0],prt[:,1],prt[:,2])
-            ax4.plot(prt[:,0],prt[:,1],prt[:,2],label='Prototype')
+        if spl3 is not None:
+            ax1.plot(spl3[:,0],spl3[:,1],spl3[:,2])
+            ax2.plot(spl3[:,0],spl3[:,1],spl3[:,2])
+            ax3.plot(spl3[:,0],spl3[:,1],spl3[:,2])
+            ax4.plot(spl3[:,0],spl3[:,1],spl3[:,2],label=spl3_label)
         
-        if siml is not None:
-            ax1.plot(siml[:,0],siml[:,1],siml[:,2])
-            ax2.plot(siml[:,0],siml[:,1],siml[:,2])
-            ax3.plot(siml[:,0],siml[:,1],siml[:,2])
-            ax4.plot(siml[:,0],siml[:,1],siml[:,2],label='Simlulated')
+        if spl4 is not None:
+            ax1.plot(spl4[:,0],spl4[:,1],spl4[:,2])
+            ax2.plot(spl4[:,0],spl4[:,1],spl4[:,2])
+            ax3.plot(spl4[:,0],spl4[:,1],spl4[:,2])
+            ax4.plot(spl4[:,0],spl4[:,1],spl4[:,2],label=spl4_label)
 
         ax4.legend(bbox_to_anchor=[pos,1])
         plt.tight_layout()
-        plt.show()
+        return fig,ax1,ax2,ax3,ax4
     
     elif intr=='d':
         fig = go.Figure()
-        fig.add_trace(go.Scatter3d(x=x[:,0],y=x[:,1],z=x[:,2],mode='lines',name='Unoptimized hermite spline',line=dict(color='darkslategray',width=6)))
+        fig.add_trace(go.Scatter3d(x=x[:,0],y=x[:,1],z=x[:,2],mode='lines',name=x_label,line=dict(color='darkslategray',width=6)))
         fig.add_trace(go.Scatter3d(x=[p0[0]],y=[p0[1]],z=[p0[2]],mode='markers',name='P0',marker=dict(size=5,color='red')))
         fig.add_trace(go.Scatter3d(x=[p1[0]],y=[p1[1]],z=[p1[2]],mode='markers',name='P1',marker=dict(size=5,color='red')))
         fig.add_trace(go.Cone(x=[p0[0]],y=[p0[1]],z=[p0[2]],u=[u0[0]],v=[u0[1]],w=[u0[2]],colorscale='RdPu',sizemode='absolute',sizeref=cne,showscale=False,name='Unit vector at P0',showlegend=True))
         fig.add_trace(go.Cone(x=[p1[0]],y=[p1[1]],z=[p1[2]],u=[u1[0]],v=[u1[1]],w=[u1[2]],colorscale='RdPu',sizemode='absolute',sizeref=cne,showscale=False,name='Unit vector at P1',showlegend=True))
 
-        if cad is not None:
-            fig.add_trace(go.Scatter3d(x=cad[:,0],y=cad[:,1],z=cad[:,2],mode='lines',name='CAD',line=dict(color='dodgerblue',width=6)))
+        if spl1 is not None:
+            fig.add_trace(go.Scatter3d(x=spl1[:,0],y=spl1[:,1],z=spl1[:,2],mode='lines',name=spl1_label,line=dict(color='dodgerblue',width=6)))
 
-        if tgt is not None:
-            fig.add_trace(go.Scatter3d(x=tgt[:,0],y=tgt[:,1],z=tgt[:,2],mode='lines',name=tgt_label,line=dict(color='darkorange',width=6)))
+        if spl2 is not None:
+            fig.add_trace(go.Scatter3d(x=spl2[:,0],y=spl2[:,1],z=spl2[:,2],mode='lines',name=spl2_label,line=dict(color='darkorange',width=6)))
 
-        if prt is not None:
-            fig.add_trace(go.Scatter3d(x=prt[:,0],y=prt[:,1],z=prt[:,2],mode='lines',name='Prototype',line=dict(color='forestgreen',width=6))) 
+        if spl3 is not None:
+            fig.add_trace(go.Scatter3d(x=spl3[:,0],y=spl3[:,1],z=spl3[:,2],mode='lines',name=spl3_label,line=dict(color='forestgreen',width=6))) 
         
-        if siml is not None:
-            fig.add_trace(go.Scatter3d(x=siml[:,0],y=siml[:,1],z=siml[:,2],mode='lines',name='Simulated',line=dict(color='hotpink',width=6))) 
+        if spl4 is not None:
+            fig.add_trace(go.Scatter3d(x=spl4[:,0],y=spl4[:,1],z=spl4[:,2],mode='lines',name=spl4_label,line=dict(color='hotpink',width=6))) 
 
         fig.update_layout(title='3D Projection',scene=dict(xaxis_title='X',yaxis_title='Y',zaxis_title='Z',camera=dict(eye=dict(x=1,y=-1,z=1))),font=dict(size=15,family='Times New Roman'),autosize=False,height=700,width=1200,legend=dict(x=0.02,y=0.98),margin=dict(l=20,r=20,t=40,b=20))
         fig.update_scenes(camera_projection_type='orthographic')
-        fig.show()
+        return fig
 
 
 
