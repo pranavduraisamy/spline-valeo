@@ -11,7 +11,27 @@ format:
         margin: 0.1
 ---
 
-## Arc Length Constrained Hermite
+## Arc Length Constrained Hermite {.smaller}
+
+</br>
+
+Min. $f(x)$ = $L($ Hermite ( p~0~ , p~1~ , x\* u~0~ , x\* u~1~ )  $)$ – $L($ Prototype $)$
+
+</br>
+
+*where,*
+
+$L( )$ : Length function
+
+p~0~ &nbsp;&nbsp;&nbsp;: Starting point
+
+p~1~ &nbsp;&nbsp;&nbsp;: Ending point
+
+u~0~ &nbsp;&nbsp;&nbsp;: Unit Tangent at p0
+
+u~1~ &nbsp;&nbsp;&nbsp;: Unit Tangent at p1
+
+x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Magnitude for u~0~ & u~1~ (Optimization Variable)
 
 ## Position 1 - Case 1 {.r-stretch}
 
