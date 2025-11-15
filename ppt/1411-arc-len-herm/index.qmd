@@ -1,5 +1,7 @@
 ---
 author: Pranav
+execute: 
+    freeze: true
 format: 
     revealjs:
         theme: [serif,custom.scss]
@@ -33,78 +35,55 @@ u~1~ &nbsp;&nbsp;&nbsp;: Unit Tangent at p1
 
 x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Magnitude for u~0~ & u~1~ (Optimization Variable)
 
+![](Picture1.png){.absolute top="21%" left="63%" width="300"}
+
 ## Position 1 - Case 1 {.r-stretch}
 
-```{=html}
-<iframe width="100%" height="100%" src="p1-case1.html"></iframe>
-```
+{{< embed plotter.ipynb#p1c1 >}}
 
 ## Position 1 - Case 2 {.r-stretch}
 
-```{=html}
-<iframe width="100%" height="100%" src="p1-case2.html"></iframe>
-```
+{{< embed plotter.ipynb#p1c2 >}}
 
 ## Position 1 - Case 3 {.r-stretch}
 
-```{=html}
-<iframe width="100%" height="100%" src="p1-case3.html"></iframe>
-```
-
+{{< embed plotter.ipynb#p1c3 >}}
 
 ## Position 2 - Case 1 {.r-stretch} 
 
-```{=html}
-<iframe width="100%" height="100%" src="p2-case1.html"></iframe>
-```
+{{< embed plotter.ipynb#p2c1 >}}
 
 ## Position 2 - Case 2 {.r-stretch} 
 
-```{=html}
-<iframe width="100%" height="100%" src="p2-case2.html"></iframe>
-```
+{{< embed plotter.ipynb#p2c2 >}}
 
 ## Position 2 - Case 3 {.r-stretch}
 
-```{=html}
-<iframe width="100%" height="100%" src="p2-case3.html"></iframe>
-```
+{{< embed plotter.ipynb#p2c3 >}}
 
 ## Position 3 - Case 1 {.r-stretch} 
 
-```{=html}
-<iframe width="100%" height="100%" src="p3-case1.html"></iframe>
-```
+{{< embed plotter.ipynb#p3c1 >}}
 
 ## Position 3 - Case 2 {.r-stretch} 
 
-```{=html}
-<iframe width="100%" height="100%" src="p3-case2.html"></iframe>
-```
+{{< embed plotter.ipynb#p3c2 >}}
 
 ## Position 3 - Case 3 {.r-stretch}
 
-```{=html}
-<iframe width="100%" height="100%" src="p3-case3.html"></iframe>
-```
+{{< embed plotter.ipynb#p3c3 >}}
 
 ## Position 4 - Case 1 {.r-stretch}
 
-```{=html}
-<iframe width="100%" height="100%" src="p4-case1.html"></iframe>
-```
+{{< embed plotter.ipynb#p4c1 >}}
 
 ## Position 4 - Case 2 {.r-stretch}
 
-```{=html}
-<iframe width="100%" height="100%" src="p4-case2.html"></iframe>
-```
+{{< embed plotter.ipynb#p4c2 >}}
 
 ## Position 4 - Case 3 {.r-stretch}
 
-```{=html}
-<iframe width="100%" height="100%" src="p4-case3.html"></iframe>
-```
+{{< embed plotter.ipynb#p4c3 >}}
 
 ## Error Metrics {.smaller style="text-align: center; font-size: 75%;"}
 
@@ -114,7 +93,7 @@ x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Magnitude for u~0~ & u~1~ (Optimization Variab
     <tr style="font-size: 85%;">
       <th>Position</th>
       <th>Case</th>
-      <th>Computed Magnitude</th>
+      <th>End Tangent Magnitude</th>
       <th>Length - Prototype</th>
       <th>Length - Optimized Hermite</th>
       <th>Error - Midpoint Deviation</th>
@@ -233,3 +212,53 @@ x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Magnitude for u~0~ & u~1~ (Optimization Variab
   </tbody>
 </table>
 </div>
+::: {style="font-size: 70%; text-align: right;"}
+***^Units: mm***
+:::
+
+## Cosserat Rod Theory {.smaller}
+
+**Conservation of Linear Momentum:** 
+
+$$
+\small{\rho A \cdot \partial_t^2 \bar{\mathbf{r}} = \overbrace{\partial_s \left( \frac{\mathbf{Q}^T \mathbf{S} \boldsymbol{\sigma}}{e} \right)}^{\substack{\text{internal shear/} \\ \text{stretch force}}} + \overbrace{e \ \bar{\mathbf{f}}}^{\substack{\text{external} \\ \text{force}}} }
+$$
+
+**Conservation of Angular Momentum:** 
+
+$$
+\small{\begin{align}\frac{\rho \mathbf{I}}{e} \cdot \partial_t \boldsymbol{\omega}&=\overbrace{\partial_s \left( \frac{\mathbf{B} \boldsymbol{\kappa}}{e^3} \right) + \frac{\boldsymbol{\kappa} \times \mathbf{B} \boldsymbol{\kappa}}{e^3}}^{\text{internal bend/twist couple}}+\overbrace{\left( \mathbf{Q}\frac{\bar{\mathbf{r}}_s}{e} \times \mathbf{S} \boldsymbol{\sigma} \right)}^{\substack{\text{internal shear/} \\ \text{stretch couple}}}+\overbrace{\left( \rho \mathbf{I} \cdot \frac{\boldsymbol{\omega}}{e} \right) \times \boldsymbol{\omega}}^{\text{Lagrangian transport}}+\overbrace{\frac{\rho \mathbf{I} \boldsymbol{\omega}}{e^2} \cdot \partial_t e}^{\text{unsteady dilation}}+\overbrace{e \ \mathbf{c}}^{\substack{\text{external} \\ \text{couple}}}
+\end{align}}
+$$
+
+By solving these equations with suitable boundary conditions, we can model the dynamics of a single Cosserat elastic rod.
+
+::: aside
+M. Tummers, et. al., "Cosserat Rod Modeling of Continuum Robots from Newtonian and Lagrangian Perspectives," in IEEE Transactions on Robotics, vol. 39, no. 3, pp. 2360-2378, June 2023, doi: 10.1109/TRO.2023.3238171.
+:::
+
+## Position 1 - Case 1 - Cosserat Rod {.smaller}
+
+::::: {.columns}
+:::: {.column width="45%"}
+
+
+|                    | Prototype | Hermite | Cosserat |
+|--------------------|-----------|---------|----------|
+| Length             | 192.160   | 192.160 | 192.153  |
+| Error Length       | -         | 0.0     | 0.007    |
+| Midpoint Deviation | -         | 27.232  | 10.421   |
+
+::: {style="font-size: 70%; "}
+***^Units: mm***
+:::
+
+::::
+
+:::: {.column width="45%"}
+
+![](Picture2.png){.absolute top="15%" left="55%" width="500"}
+
+::::
+
+:::::
