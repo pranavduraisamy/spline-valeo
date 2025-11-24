@@ -13,142 +13,6 @@ format:
         margin: 0.1
 ---
 
-## Position 1 - Case 1 {.r-stretch}
-
-{{< embed ../../pyelastica/01-p1-case1.ipynb#p1c1 >}}
-
-
-## Error Metrics {.smaller style="text-align: center; font-size: 75%;"}
-
-<div>
-<table class="dataframe">
-  <thead>
-    <tr style="font-size: 85%;">
-      <th>Position</th>
-      <th>Case</th>
-      <th>End Tangent Magnitude</th>
-      <th>Length - Prototype</th>
-      <th>Length - Optimized Hermite</th>
-      <th>Error - Midpoint Deviation</th>
-      <th>Error - Length</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="font-size: 75%;">
-      <td>1</td>
-      <td>1</td>
-      <td>339.231</td>
-      <td>192.160</td>
-      <td>192.160</td>
-      <td>27.232</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>1</td>
-      <td>2</td>
-      <td>428.425</td>
-      <td>183.671</td>
-      <td>183.671</td>
-      <td>29.464</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>1</td>
-      <td>3</td>
-      <td>410.361</td>
-      <td>217.601</td>
-      <td>217.601</td>
-      <td>24.393</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>2</td>
-      <td>1</td>
-      <td>326.361</td>
-      <td>192.181</td>
-      <td>192.181</td>
-      <td>31.582</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>2</td>
-      <td>2</td>
-      <td>375.337</td>
-      <td>183.667</td>
-      <td>183.667</td>
-      <td>22.649</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>2</td>
-      <td>3</td>
-      <td>430.615</td>
-      <td>217.588</td>
-      <td>217.588</td>
-      <td>31.889</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>3</td>
-      <td>1</td>
-      <td>329.663</td>
-      <td>192.184</td>
-      <td>192.184</td>
-      <td>37.735</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>3</td>
-      <td>2</td>
-      <td>346.258</td>
-      <td>183.675</td>
-      <td>183.675</td>
-      <td>21.762</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>3</td>
-      <td>3</td>
-      <td>444.335</td>
-      <td>217.567</td>
-      <td>217.567</td>
-      <td>44.350</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>4</td>
-      <td>1</td>
-      <td>349.239</td>
-      <td>192.240</td>
-      <td>192.240</td>
-      <td>40.860</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>4</td>
-      <td>2</td>
-      <td>331.333</td>
-      <td>184.719</td>
-      <td>184.719</td>
-      <td>24.860</td>
-      <td>0.0</td>
-    </tr>
-    <tr style="font-size: 75%;">
-      <td>4</td>
-      <td>3</td>
-      <td>458.466</td>
-      <td>217.558</td>
-      <td>217.558</td>
-      <td>49.024</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-::: {style="font-size: 70%; text-align: right;"}
-***^Units: mm***
-:::
-
 ## Cosserat Rod Theory {.smaller}
 
 **Conservation of Linear Momentum:** 
@@ -170,3 +34,210 @@ By solving these equations with suitable boundary conditions, we can model the d
 M. Tummers, et. al., "Cosserat Rod Modeling of Continuum Robots from Newtonian and Lagrangian Perspectives," in IEEE Transactions on Robotics, vol. 39, no. 3, pp. 2360-2378, June 2023, doi: 10.1109/TRO.2023.3238171.
 :::
 
+## Properties
+
+Density = 1.230 g/cm^3^ (Assuming as Natural Rubber)
+
+Young's Modulus = 3.605 MPa
+
+Shear Modulus = 1.209 MPa
+
+Poisson's Ratio = 0.49
+
+Radius = 2.43 mm (Assuming Equivalent Mass)
+
+No. of Elements = 100
+
+## Position 1 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c1 >}}
+
+## Position 1 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c2 >}}
+
+## Position 1 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c3 >}}
+
+## Position 2 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c1 >}}
+
+## Position 2 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c2 >}}
+
+## Position 2 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c3 >}}
+
+## Position 3 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c1 >}}
+
+## Position 3 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c2 >}}
+
+## Position 3 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c3 >}}
+
+## Position 4 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c1 >}}
+
+## Position 4 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c2 >}}
+
+## Position 4 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c3 >}}
+
+## Error Metrics {.smaller style="text-align: center; font-size: 75%;"}
+
+<div>
+</style>
+<table class="dataframe">
+  <thead>
+    <tr style="font-size: 85%;">
+      <th></th>
+      <th>Position</th>
+      <th>Case</th>
+      <th>Length - Prototype</th>
+      <th>MD Error - Hermite</th>
+      <th>MD Error - Simulation</th>
+      <th>Length Error - Hermite</th>
+      <th>Length Error - Simulation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="font-size: 75%;">
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>192.160</td>
+      <td>22.695</td>
+      <td>10.421</td>
+      <td>0.0</td>
+      <td>-0.007</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>183.671</td>
+      <td>29.268</td>
+      <td>9.117</td>
+      <td>0.0</td>
+      <td>-0.011</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>217.601</td>
+      <td>22.226</td>
+      <td>15.225</td>
+      <td>0.0</td>
+      <td>-0.018</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>3</th>
+      <td>2</td>
+      <td>1</td>
+      <td>192.181</td>
+      <td>29.337</td>
+      <td>7.100</td>
+      <td>0.0</td>
+      <td>-0.020</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>4</th>
+      <td>2</td>
+      <td>2</td>
+      <td>183.667</td>
+      <td>21.194</td>
+      <td>16.984</td>
+      <td>0.0</td>
+      <td>-0.016</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>5</th>
+      <td>2</td>
+      <td>3</td>
+      <td>217.588</td>
+      <td>20.111</td>
+      <td>23.644</td>
+      <td>0.0</td>
+      <td>-0.036</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>6</th>
+      <td>3</td>
+      <td>1</td>
+      <td>192.184</td>
+      <td>32.330</td>
+      <td>9.393</td>
+      <td>0.0</td>
+      <td>-0.043</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>7</th>
+      <td>3</td>
+      <td>2</td>
+      <td>183.680</td>
+      <td>19.543</td>
+      <td>19.040</td>
+      <td>0.0</td>
+      <td>-0.022</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>8</th>
+      <td>3</td>
+      <td>3</td>
+      <td>217.567</td>
+      <td>26.515</td>
+      <td>21.089</td>
+      <td>0.0</td>
+      <td>-0.050</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>9</th>
+      <td>4</td>
+      <td>1</td>
+      <td>192.240</td>
+      <td>20.925</td>
+      <td>8.214</td>
+      <td>0.0</td>
+      <td>-0.065</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>10</th>
+      <td>4</td>
+      <td>2</td>
+      <td>184.719</td>
+      <td>19.015</td>
+      <td>20.691</td>
+      <td>0.0</td>
+      <td>-0.030</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>11</th>
+      <td>4</td>
+      <td>3</td>
+      <td>217.558</td>
+      <td>28.402</td>
+      <td>22.089</td>
+      <td>0.0</td>
+      <td>-0.064</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+::: {style="font-size: 70%; text-align: right;"}
+***^Units: mm***
+:::
