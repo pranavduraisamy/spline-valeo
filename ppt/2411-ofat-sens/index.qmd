@@ -1,0 +1,353 @@
+---
+author: Pranav
+execute: 
+    freeze: true
+format: 
+    revealjs:
+        theme: [serif,custom.scss]
+        slide-number: true
+        css: custom.css
+        transition: slide
+        transition-speed: default
+        chalkboard: true
+        margin: 0.1
+---
+
+# OFAT Analysis - Sensitivity of Density
+
+Base Density = 1.230 g/cm^3^
+
+Density -10% = 1.107 g/cm^3^
+
+Density +10% = 1.353 g/mm^3^
+
+## Position 1 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c1-den >}}
+
+## Position 1 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c2-den >}}
+
+## Position 1 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c3-den >}}
+
+## Position 2 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c1-den >}}
+
+## Position 2 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c2-den >}}
+
+## Position 2 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c3-den >}}
+
+## Position 3 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c1-den >}}
+
+## Position 3 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c2-den >}}
+
+## Position 3 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c3-den >}}
+
+## Position 4 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c1-den >}}
+
+## Position 4 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c2-den >}}
+
+## Position 4 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c3-den >}}
+
+# OFAT Analysis - Sensitivity of Young's Modulus
+
+Base Young's Modulus = 3.605 MPa
+
+Young's Modulus -10% = 3.244 MPa
+
+Young's Modulus +10% = 3.965 MPa
+
+## Position 1 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c1-yng >}}
+
+## Position 1 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c2-yng >}}
+
+## Position 1 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c3-yng >}}
+
+## Position 2 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c1-yng >}}
+
+## Position 2 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c2-yng >}}
+
+## Position 2 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c3-yng >}}
+
+## Position 3 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c1-yng >}}
+
+## Position 3 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c2-yng >}}
+
+## Position 3 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c3-yng >}}
+
+## Position 4 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c1-yng >}}
+
+## Position 4 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c2-yng >}}
+
+## Position 4 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c3-yng >}}
+
+# OFAT Analysis - Sensitivity of Tube Radius
+
+Base Radius = 2.430 mm
+
+Radius -10% = 2.187 mm
+
+Radius +10% = 2.673 mm
+
+## Position 1 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c1-rad >}}
+
+## Position 1 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c2-rad >}}
+
+## Position 1 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p1c3-rad >}}
+
+## Position 2 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c1-rad >}}
+
+## Position 2 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c2-rad >}}
+
+## Position 2 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p2c3-rad >}}
+
+## Position 3 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c1-rad >}}
+
+## Position 3 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c2-rad >}}
+
+## Position 3 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p3c3-rad >}}
+
+## Position 4 - Case 1 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c1-rad >}}
+
+## Position 4 - Case 2 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c2-rad >}}
+
+## Position 4 - Case 3 {.r-stretch}
+
+{{< embed plotter.ipynb#p4c3-rad >}}
+
+## Error Metrics {.smaller style="text-align: center; font-size: 75%;"}
+
+<div>
+<table class="dataframe">
+  <thead>
+    <tr style="font-size: 85%;">
+      <th></th>
+      <th>Position</th>
+      <th>Case</th>
+      <th>Base</th>
+      <th>Density -10%</th>
+      <th>Density +10</th>
+      <th>Youngs -10%</th>
+      <th>Youngs +10</th>
+      <th>Radius -10%</th>
+      <th>Radius +10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="font-size: 75%;">
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>10.421</td>
+      <td>11.269</td>
+      <td>9.738</td>
+      <td>9.674</td>
+      <td>11.187</td>
+      <td>8.783</td>
+      <td>12.311</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>9.117</td>
+      <td>7.457</td>
+      <td>10.904</td>
+      <td>11.107</td>
+      <td>7.601</td>
+      <td>13.834</td>
+      <td>6.296</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>15.225</td>
+      <td>14.446</td>
+      <td>15.882</td>
+      <td>15.948</td>
+      <td>14.522</td>
+      <td>16.592</td>
+      <td>13.663</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>3</th>
+      <td>2</td>
+      <td>1</td>
+      <td>7.100</td>
+      <td>7.993</td>
+      <td>6.301</td>
+      <td>6.221</td>
+      <td>7.910</td>
+      <td>5.335</td>
+      <td>8.814</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>4</th>
+      <td>2</td>
+      <td>2</td>
+      <td>16.984</td>
+      <td>15.827</td>
+      <td>18.201</td>
+      <td>18.338</td>
+      <td>15.929</td>
+      <td>20.883</td>
+      <td>14.320</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>5</th>
+      <td>2</td>
+      <td>3</td>
+      <td>23.644</td>
+      <td>23.163</td>
+      <td>24.001</td>
+      <td>24.034</td>
+      <td>23.212</td>
+      <td>24.295</td>
+      <td>22.720</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>6</th>
+      <td>3</td>
+      <td>1</td>
+      <td>9.393</td>
+      <td>10.755</td>
+      <td>8.101</td>
+      <td>7.963</td>
+      <td>10.629</td>
+      <td>6.444</td>
+      <td>11.860</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>7</th>
+      <td>3</td>
+      <td>2</td>
+      <td>19.040</td>
+      <td>18.333</td>
+      <td>19.804</td>
+      <td>19.891</td>
+      <td>18.394</td>
+      <td>21.496</td>
+      <td>17.482</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>8</th>
+      <td>3</td>
+      <td>3</td>
+      <td>21.089</td>
+      <td>20.889</td>
+      <td>21.200</td>
+      <td>21.208</td>
+      <td>20.911</td>
+      <td>21.404</td>
+      <td>20.532</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>9</th>
+      <td>4</td>
+      <td>1</td>
+      <td>8.214</td>
+      <td>10.018</td>
+      <td>6.579</td>
+      <td>6.407</td>
+      <td>9.847</td>
+      <td>4.527</td>
+      <td>11.559</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>10</th>
+      <td>4</td>
+      <td>2</td>
+      <td>20.691</td>
+      <td>20.269</td>
+      <td>21.177</td>
+      <td>21.234</td>
+      <td>20.303</td>
+      <td>22.236</td>
+      <td>19.797</td>
+    </tr>
+    <tr style="font-size: 75%;">
+      <th>11</th>
+      <td>4</td>
+      <td>3</td>
+      <td>22.089</td>
+      <td>22.127</td>
+      <td>21.996</td>
+      <td>21.983</td>
+      <td>22.126</td>
+      <td>22.097</td>
+      <td>21.758</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+::: {style="font-size: 70%; text-align: right;"}
+***\^Units: mm***
+:::
