@@ -49,57 +49,128 @@ Radius = 2.43 mm (Assuming Equivalent Mass)
 No. of Elements = 100
 
 ## Position 1 - Case 1 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p1c1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p1c1e >}}
+:::
+::::
 
 ## Position 1 - Case 2 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p1c2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p1c2e >}}
+:::
+::::
 
 ## Position 1 - Case 3 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p1c3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p1c3e >}}
+:::
+::::
 
 ## Position 2 - Case 1 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p2c1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p2c1e >}}
+:::
+::::
 
 ## Position 2 - Case 2 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p2c2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p2c2e >}}
+:::
+::::
 
 ## Position 2 - Case 3 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p2c3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p2c3e >}}
+:::
+::::
 
 ## Position 3 - Case 1 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p3c1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p3c1e >}}
+:::
+::::
 
 ## Position 3 - Case 2 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p3c2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p3c2e >}}
+:::
+::::
 
 ## Position 3 - Case 3 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p3c3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p3c3e >}}
+:::
+::::
 
 ## Position 4 - Case 1 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p4c1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p4c1e >}}
+:::
+::::
 
 ## Position 4 - Case 2 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p4c2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p4c2e >}}
+:::
+::::
 
 ## Position 4 - Case 3 {.r-stretch}
-
+:::: {.columns}
+::: {.column width="58%"}
 {{< embed plotter.ipynb#p4c3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p4c3e >}}
+:::
+:::: 
 
 ## Error Metrics {.smaller style="text-align: center; font-size: 75%;"}
 
-<div>
-</style>
+
 <table class="dataframe">
   <thead>
     <tr style="font-size: 85%;">
@@ -120,7 +191,7 @@ No. of Elements = 100
       <td>1</td>
       <td>192.160</td>
       <td>22.695</td>
-      <td>10.421</td>
+      <td>10.759</td>
       <td>0.0</td>
       <td>-0.007</td>
     </tr>
@@ -130,7 +201,7 @@ No. of Elements = 100
       <td>2</td>
       <td>183.671</td>
       <td>29.268</td>
-      <td>9.117</td>
+      <td>10.025</td>
       <td>0.0</td>
       <td>-0.011</td>
     </tr>
@@ -140,7 +211,7 @@ No. of Elements = 100
       <td>3</td>
       <td>217.601</td>
       <td>22.226</td>
-      <td>15.225</td>
+      <td>15.326</td>
       <td>0.0</td>
       <td>-0.018</td>
     </tr>
@@ -150,7 +221,7 @@ No. of Elements = 100
       <td>1</td>
       <td>192.181</td>
       <td>29.337</td>
-      <td>7.100</td>
+      <td>7.328</td>
       <td>0.0</td>
       <td>-0.020</td>
     </tr>
@@ -160,7 +231,7 @@ No. of Elements = 100
       <td>2</td>
       <td>183.667</td>
       <td>21.194</td>
-      <td>16.984</td>
+      <td>17.542</td>
       <td>0.0</td>
       <td>-0.016</td>
     </tr>
@@ -170,7 +241,7 @@ No. of Elements = 100
       <td>3</td>
       <td>217.588</td>
       <td>20.111</td>
-      <td>23.644</td>
+      <td>22.851</td>
       <td>0.0</td>
       <td>-0.036</td>
     </tr>
@@ -180,7 +251,7 @@ No. of Elements = 100
       <td>1</td>
       <td>192.184</td>
       <td>32.330</td>
-      <td>9.393</td>
+      <td>9.157</td>
       <td>0.0</td>
       <td>-0.043</td>
     </tr>
@@ -190,7 +261,7 @@ No. of Elements = 100
       <td>2</td>
       <td>183.680</td>
       <td>19.543</td>
-      <td>19.040</td>
+      <td>19.364</td>
       <td>0.0</td>
       <td>-0.022</td>
     </tr>
@@ -200,7 +271,7 @@ No. of Elements = 100
       <td>3</td>
       <td>217.567</td>
       <td>26.515</td>
-      <td>21.089</td>
+      <td>20.495</td>
       <td>0.0</td>
       <td>-0.050</td>
     </tr>
@@ -210,7 +281,7 @@ No. of Elements = 100
       <td>1</td>
       <td>192.240</td>
       <td>20.925</td>
-      <td>8.214</td>
+      <td>7.946</td>
       <td>0.0</td>
       <td>-0.065</td>
     </tr>
@@ -220,7 +291,7 @@ No. of Elements = 100
       <td>2</td>
       <td>184.719</td>
       <td>19.015</td>
-      <td>20.691</td>
+      <td>21.117</td>
       <td>0.0</td>
       <td>-0.030</td>
     </tr>
@@ -230,13 +301,12 @@ No. of Elements = 100
       <td>3</td>
       <td>217.558</td>
       <td>28.402</td>
-      <td>22.089</td>
+      <td>21.767</td>
       <td>0.0</td>
       <td>-0.064</td>
     </tr>
   </tbody>
 </table>
-</div>
 
 ::: {style="font-size: 70%; text-align: right;"}
 ***^Units: mm***

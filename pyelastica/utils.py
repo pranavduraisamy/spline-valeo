@@ -249,3 +249,25 @@ def dir_unitvectr(v):
     d1/=np.linalg.norm(d1)
     d2=np.cross(d3,d1)
     return np.column_stack([d1,d2,d3])
+
+def plot_curvature(siml, prt):
+    def curvature(df):
+        x = df['X'].values
+        y = df['Y'].values
+        z = df['Z'].values
+        dx = np.gradient(x)
+        dy = np.gradient(y)
+        dz = np.gradient(z)
+        ddx = np.gradient(dx)
+        ddy = np.gradient(dy)
+        ddz = np.gradient(dz)
+        cross = np.cross(np.vstack((dx,dy,dz)).T, np.vstack((ddx,ddy,ddz)).T)
+        cross_norm = np.linalg.norm(cross, axis=1)
+        first_norm = np.linalg.norm(np.vstack((dx,dy,dz)).T, axis=1)
+        curvature = cross_norm / (first_norm**3)
+        return curvature
+    fig=go.Figure()
+    fig.add_trace(go.Scatter(x=[i for i in range(1,101,1)], y=curvature(siml),mode='lines',name='Simulated',line=dict(color='dodgerblue',width=3)))
+    fig.add_trace(go.Scatter(x=[i for i in range(1,101,1)], y=curvature(prt),mode='lines',name='Prototype',line=dict(color='orangered',width=3)))
+    fig.update_layout(title='Curvature',scene=dict(xaxis_title='X',yaxis_title='Y',zaxis_title='Z',camera=dict(eye=dict(x=1,y=-1,z=1))),font=dict(size=15,family='Times New Roman'),autosize=False,height=400,width=600,legend=dict(x=0.02,y=0.98),margin=dict(l=20,r=20,t=40,b=20))
+    fig.show()
