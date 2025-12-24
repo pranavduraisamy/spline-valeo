@@ -1,4 +1,4 @@
-def gravity_looper(psit=1,case=1,base_radius=2.43,density=1.23e-6,youngs_modulus=0.003605,intr='d',pfix='',csv=1,html=0):
+def gravity_looper(psit=1,case=1,base_radius=2.43,density=1.23e-6,youngs_modulus=0.003605,twist=0,intr='d',pfix='',csv=1,html=0):
     import numpy as np
     import pandas as pd
     import utils
@@ -56,7 +56,7 @@ def gravity_looper(psit=1,case=1,base_radius=2.43,density=1.23e-6,youngs_modulus
     simulator.append(tube)
     simulator.add_forcing_to(tube).using(
         GravityForces,
-        acc_gravity=np.array([0.0,0.0,-1e-2])
+        acc_gravity=np.array([0.0,0.0,-9.81e-3])
     )
 
     # damp
@@ -180,6 +180,9 @@ def gravity_looper(psit=1,case=1,base_radius=2.43,density=1.23e-6,youngs_modulus
     init_dir=tube.director_collection[...,-1].copy()
     tgt_pos=df.iloc[6,2:].values
     tgt_dir=utils.dir_unitvectr(df.iloc[9,2:].values).T
+    theta=np.deg2rad(twist)
+    tgt_dir[0]=(tgt_dir[0]*np.cos(theta)+np.cross(tgt_dir[2],tgt_dir[0])*np.sin(theta)+tgt_dir[2]*np.dot(tgt_dir[2],tgt_dir[0])*(1-np.cos(theta)))
+    tgt_dir[1]=(tgt_dir[1]*np.cos(theta)+np.cross(tgt_dir[2],tgt_dir[1])*np.sin(theta)+tgt_dir[2]*np.dot(tgt_dir[2],tgt_dir[1])*(1-np.cos(theta)))
     ramp_time=350
 
     trajectory=TrajectoryRamp(
