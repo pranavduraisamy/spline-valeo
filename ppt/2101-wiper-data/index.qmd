@@ -1,0 +1,144 @@
+---
+author: Pranav
+execute: 
+    freeze: true
+format: 
+    revealjs:
+        theme: [serif,custom.scss]
+        slide-number: true
+        css: custom.css
+        transition: slide
+        transition-speed: default
+        chalkboard: true
+        margin: 0.1
+---
+
+# Wiper Hose Routing - Pyelastica Simulation
+
+## Properties
+
+Density = 1.230 g/cm^3^ (Assuming as Natural Rubber)
+
+Young's Modulus = 3.605 MPa
+
+Shear Modulus = 1.209 MPa
+
+Poisson's Ratio = 0.49
+
+Radius = 2.43 mm (Assuming Equivalent Mass)
+
+No. of Elements = 100
+
+## Position 1{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w1e >}}
+:::
+::::
+
+## Position 2{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w2e >}}
+:::
+::::
+
+## Position 3{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w3e >}}
+:::
+::::
+
+## Position 4{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w4 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w4e >}}
+:::
+::::
+
+## Position 5{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w5 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w5e >}}
+:::
+::::
+
+## Error Metrics {.smaller style="text-align: center; font-size: 75%;"}
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Wiper Position</th>
+      <th>Length - Prototype</th>
+      <th>MD Error - Simulation</th>
+      <th>Length Error - Simulation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="text-align: center;">
+      <td>1</td>
+      <td>163.633</td>
+      <td>54.931</td>
+      <td>-0.240</td>
+    </tr>
+    <tr style="text-align: center;">
+      <td>2</td>
+      <td>163.434</td>
+      <td>54.921</td>
+      <td>-0.236</td>
+    </tr>
+    <tr style="text-align: center;">
+      <td>3</td>
+      <td>163.421</td>
+      <td>52.379</td>
+      <td>-0.235</td>
+    </tr>
+    <tr style="text-align: center;">
+      <td>4</td>
+      <td>163.686</td>
+      <td>9.745</td>
+      <td>-0.242</td>
+    </tr>
+    <tr style="text-align: center;">
+      <td>5</td>
+      <td>163.299</td>
+      <td>39.859</td>
+      <td>-0.188</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+::: {style="font-size: 70%; text-align: right;"}
+***^Units: mm***
+:::
