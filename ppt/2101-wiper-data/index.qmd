@@ -79,6 +79,16 @@ No. of Elements = 100
 :::
 ::::
 
+## Position X - New Coord Sys. {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#wnew >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#wnewe >}}
+:::
+::::
+
 ## Error Metrics {.smaller style="text-align: center; font-size: 75%;"}
 
 <div>
@@ -92,48 +102,61 @@ No. of Elements = 100
     }
 
     .dataframe thead th {
-        text-align: left;
+        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
   <thead>
-    <tr style="text-align: center;">
-      <th>Wiper Position</th>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Position</th>
       <th>Length - Prototype</th>
       <th>MD Error - Simulation</th>
       <th>Length Error - Simulation</th>
     </tr>
   </thead>
   <tbody>
-    <tr style="text-align: center;">
-      <td>1</td>
-      <td>163.633</td>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>163.633259</td>
       <td>54.931</td>
-      <td>-0.240</td>
+      <td>-0.239728</td>
     </tr>
-    <tr style="text-align: center;">
-      <td>2</td>
-      <td>163.434</td>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>163.433579</td>
       <td>54.921</td>
-      <td>-0.236</td>
+      <td>-0.235556</td>
     </tr>
-    <tr style="text-align: center;">
-      <td>3</td>
-      <td>163.421</td>
+    <tr>
+      <th>2</th>
+      <td>3.0</td>
+      <td>163.42104</td>
       <td>52.379</td>
-      <td>-0.235</td>
+      <td>-0.235076</td>
     </tr>
-    <tr style="text-align: center;">
-      <td>4</td>
-      <td>163.686</td>
+    <tr>
+      <th>3</th>
+      <td>4.0</td>
+      <td>163.685862</td>
       <td>9.745</td>
-      <td>-0.242</td>
+      <td>-0.242399</td>
     </tr>
-    <tr style="text-align: center;">
-      <td>5</td>
-      <td>163.299</td>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>163.298704</td>
       <td>39.859</td>
-      <td>-0.188</td>
+      <td>-0.188407</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>New coord</td>
+      <td>163.30062</td>
+      <td>9.988</td>
+      <td>-0.104703</td>
     </tr>
   </tbody>
 </table>
