@@ -1,4 +1,4 @@
-def wiper_looper(wipe=1,base_radius=2.43,density=1.23e-6,youngs_modulus=0.003605,twist=0,intr='d',pfix='',csv=1,html=0):
+def wiper_looper(wipe=1,base_radius=2.43,density=1.23e-6,youngs_modulus=0.003605,twist=0,intr='d',pfix='',csv=1,html=0,g_dir=1):
     import numpy as np
     import pandas as pd
     import utils
@@ -56,7 +56,7 @@ def wiper_looper(wipe=1,base_radius=2.43,density=1.23e-6,youngs_modulus=0.003605
     simulator.append(tube)
     simulator.add_forcing_to(tube).using(
         GravityForces,
-        acc_gravity=np.array([0.0,0.0,-9.81e-3])
+        acc_gravity=np.array([0.0,0.0,g_dir*9.81e-3])
     )
 
     # damp
