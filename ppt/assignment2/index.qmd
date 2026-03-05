@@ -1,0 +1,359 @@
+---
+author: Pranav
+execute: 
+    freeze: true
+format: 
+    revealjs:
+        theme: [serif,custom.scss]
+        slide-number: true
+        css: custom.css
+        transition: slide
+        transition-speed: default
+        chalkboard: true
+        margin: 0.1
+---
+
+<br>
+
+<br>
+
+<br>
+
+<center> 
+
+::: {style="font-size: 1.75em;"}
+**ED 6002: Optimization Methods in Engineering Design (2025-26)**
+:::
+
+::: {style="font-size: 1.25em;"}
+*Assignment 2 | Pranav D | ns26z167*
+:::
+
+</center>
+
+##
+
+### Q1. Bracket Minima - Exhaustive Search
+
+#### Objective Function:
+
+$$
+Min.~~f(x)=2e^x-x^3-10x
+$$
+
+
+#### Design Space:
+
+$$
+\begin{aligned}
+x &\in [0, 10] \\
+\end{aligned}
+$$
+
+#### Initial point and increment:
+
+$$
+x_0 = 0\\
+\triangle x = 2
+$$
+
+##
+
+### After Solving...
+
+:::: columns
+
+::: {.column width="60%"}
+
+ - Terminated after 1st Iteration
+ - Minima lies between (0,4)
+
+:::
+
+::: {.column width="40%"}
+
+![](p1.jpeg)
+
+:::
+
+::::
+
+## 
+
+### Q2. 2 Iterations of Golden Section Search
+
+:::: columns
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="40%"}
+
+![](p2.jpeg)
+
+:::
+
+::: {.column width="40%"}
+
+![](p3.jpeg)
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::::
+
+##
+
+### After Solving...
+
+ - Bounds shrunk to (2.472,4) (in blue)
+ - Size of the bracketed interval = 1.528
+ - Difference between the function value at bounds = 21.33
+
+![](plot1.jpg){fig-align="center"}
+
+## Q3. Solving analytically
+
+:::: columns
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="40%"}
+
+![](p4.jpeg)
+
+:::
+
+::: {.column width="40%"}
+
+![](p5.jpeg)
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::::
+
+## Comments {.smaller}
+
+ - Results from the golden section search method and analytical approach were compared
+ - In Golden section search,
+    - $x^*$ = 3.236
+    - $f(x^*)$ = -15.38
+ - From analytical approach,
+    - $x^*$ = 2.837
+    - $f(x^*)$ = -17.07
+ - $x^*$ differs by -0.4, which resulted in -1.69 deviation from actual minimum value of the function
+
+## 
+
+### Q4. Code for Exponential Search
+
+```{.matlab}
+function [a,b,k] = expsearch(f, x_init, d, t, max_iter)
+    if nargin < 4
+        max_iter = 100;
+    end
+    k = 0;
+    if f(x_init - abs(d),t) >= f(x_init,t) && f(x_init,t) >= f(x_init + abs(d),t)
+        d = abs(d);
+    elseif f(x_init - abs(d),t) <= f(x_init,t) && f(x_init,t) <= f(x_init + abs(d),t)
+        d = -abs(d);
+    else
+        disp("choose diff x_init or d")
+        return
+    end
+    x_k = x_init;
+    for i = 1:max_iter
+        x_k1 = x_k + (2^k) * d;
+
+        if f(x_k1,t) < f(x_k,t)
+            k = k + 1;
+            x_k = x_k1;
+        else
+            x_prev = x_k - (2^(k-1)) * d;
+            a = min(x_prev, x_k1);
+            b = max(x_prev, x_k1);
+            return
+        end
+    end
+    disp("max iters")
+    a = min(x_prev, x_k1);
+    b = max(x_prev, x_k1);
+end
+```
+
+##
+
+### Code for Region Halving
+
+```{.matlab}
+function [a,b,l,k] = inthalving(f,a,b,t,e)
+    if nargin < 5
+        e = 0.1;
+    end
+    xm = (a+b)/2;
+    l = b-a;
+    k = 0;
+    while abs(l) > e
+        x1 = a + (l/4);
+        x2 = b - (l/4);
+        if f(x1,t) < f(xm,t)
+            b = xm;
+            xm = x1;
+        elseif f(x2,t) < f(xm,t)
+            a = xm;
+            xm = x2;
+        else
+            a = x1;
+            b = x2;
+        end
+        l = b-a;
+        k = k+1;
+    end
+end
+```
+
+## 
+
+### Combine both & Benchmark
+
+```{.matlab}
+function y = sample_f(x, t)
+    y = (2 * exp(x)) - (x.^3) - (10*x);
+    % y = (x.^2) + (54./x);
+end
+```
+
+```{.matlab}
+sample_f = @sample_f;
+[a_es,b_es,k_es] = expsearch(sample_f, 0, 2, 0, 100)
+[a_ih,b_ih,l_ih,k_ih] = inthalving(sample_f, a_es, b_es, 0, 0.1)
+```
+
+```{.md}
+a_es = 0            // Lower bound in Exp. Search
+b_es = 6            // Upper bound in Exp. Search
+k_es = 1            // Number of iters in Exp. Search
+a_ih = 2.8125       // Lower bound in Interval halving
+b_ih = 2.9062       // Upper bound in Interval halving
+l_ih = 0.0938       // Final size of the Interval
+k_ih =  6           // Number of iters in Interval halving
+```
+
+##
+
+### Q5. Solving for Blackbox function
+
+```{.matlab}
+fn = @myfunction;
+
+x_init = [2  0  2  5  0  0  6  0  0  10];
+d_init = [5  1  5  10  1  1  1  1  1  1];
+
+max_iter = 5000;
+e = 0.1;
+
+Case   = (1:10).';
+x_init  = x_init(:);
+d  = d_init(:);
+
+a_es   = nan(10,1);
+b_es   = nan(10,1);
+k_es   = nan(10,1);
+
+a_ih   = nan(10,1);
+b_ih   = nan(10,1);
+l_ih   = nan(10,1);
+k_ih   = nan(10,1);
+
+optima = nan(10,1);
+fn_val = nan(10,1);
+
+for c = 1:10
+    [a_es(c), b_es(c), k_es(c)] = expsearch(fn, x_init(c), d(c), c, max_iter);
+    [a_ih(c), b_ih(c), l_ih(c), k_ih(c)] = inthalving(fn, a_es(c), b_es(c), c, e);
+
+    optima(c) = (a_ih(c) + b_ih(c)) / 2;
+    fn_val(c) = fn(optima(c), c);
+end
+
+Results = table(Case, x_init, d, a_es, b_es, k_es, a_ih, b_ih, l_ih, k_ih, optima, fn_val);
+disp(Results)
+```
+
+##
+
+### Q5. Comparing the solutions {.smaller}
+
+```{.md}
+    Case    x_init    d        a_es        b_es    k_es     a_ih       b_ih        l_ih      k_ih    optima       fn_val  
+    ____    ______    __    ___________    ____    ____    _______    _______    ________    ____    _______    __________
+
+      1        2       5            -13      2        1    -10.334    -10.275    0.058594     8      -10.305       -1.6156
+      2        0       1              0      3        1    0.42188    0.51562     0.09375     5      0.46875      -0.36048
+      3        2       5            -13      2        1    -5.5293    -5.4707    0.058594     8         -5.5       -17.886
+      4        5      10              5     35        1     26.709     26.768    0.058594     9       26.738       -26.722
+      5        0       1              1      7        2     2.9688     3.0625     0.09375     6       3.0156    0.00024414
+      6        0       1              0      3        1     0.9375     1.0312     0.09375     5      0.98438        1.0156
+      7        6       1              5    6.5        0     5.0469     5.1406     0.09375     4       5.0938         44.49
+      8        0       1              0      3        1     2.9062          3     0.09375     5       2.9531     0.0021973
+      9        0       1              1      7        2     2.7812      2.875     0.09375     6       2.8281       -17.074
+     10       10       1    4.4942e+307    Inf     1023        Inf        NaN         NaN     1          NaN           NaN
+```
+
+##
+
+### Comments {.smaller}
+
+ - Case 7 may contain a random fn
+ - Case 10 is just a straight line (100-2x)
+
+:::: columns
+
+::: {.column width="70%"}
+
+```{.matlab}
+fn = @myfunction;
+
+x10 = (-3:3)';
+vals10 = arrayfun(@(t) fn(t,10), x10);
+Sol10 = [x10 vals10]
+
+x7=zeros(5,1);
+vals7 = arrayfun(@(t) fn(t,7), x7);
+Sol7 = [x7 vals7]
+```
+
+:::
+
+::: {.column width="30%"}
+
+```{.md}
+Sol10 =
+    -3   106
+    -2   104
+    -1   102
+     0   100
+     1    98
+     2    96
+     3    94
+Sol7 =
+     0     0
+     0     1
+     0     1
+     0     1
+     0     0
+```
+
+:::
+
+::::
