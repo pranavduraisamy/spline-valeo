@@ -1,0 +1,66 @@
+---
+author: Pranav
+execute: 
+    freeze: true
+format: 
+    revealjs:
+        theme: [serif,custom.scss]
+        slide-number: true
+        css: custom.css
+        transition: slide
+        transition-speed: default
+        chalkboard: true
+        margin: 0.1
+---
+
+# Parametric Study
+
+## End Twist {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#twist-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#twist-error >}}
+:::
+::::
+
+## Youngs Modulus {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#youngs-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#youngs-error >}}
+:::
+::::
+
+## Radius {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#radius-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#radius-error >}}
+:::
+::::
+
+## Density {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#density-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#density-error >}}
+:::
+::::
+
+## End Vector {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#vectr-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#vectr-error >}}
+:::
+::::
