@@ -64,3 +64,28 @@ format:
 {{< embed plotter.ipynb#vectr-error >}}
 :::
 ::::
+
+## Design Space for DoE
+
+Density (1.23) = 0.2 to 3 g/cm^3^ 
+
+Young's Modulus (3.605) = 1 to 10 MPa
+
+Radius (2.43) = 1 to 5 mm
+
+Twist in End Vector (0) = -180° to 180°
+
+End Vector Deviation (0) = 0° to 10°
+
+Sampled using LHS
+
+
+## DOE {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#doe-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#doe-error >}}
+:::
+::::
