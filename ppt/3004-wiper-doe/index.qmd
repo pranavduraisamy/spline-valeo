@@ -27,6 +27,8 @@ Twist in End Vector (0) = -10° to 10°
 
 End Vector Deviation (0) = 0° to 10°
 
+Length (163.32) = 146.988 to 179.652 mm
+
 Sampled using LHS
 
 
