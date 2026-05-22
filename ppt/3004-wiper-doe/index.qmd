@@ -81,3 +81,28 @@ Sampled using LHS
 {{< embed plotter.ipynb#w5-doe-error >}}
 :::
 ::::
+
+## Pairplot - 1 {auto-stretch="true"}
+
+{{< embed plotter.ipynb#w1-scatter >}}
+
+## Pairplot - 2 {.r-stretch}
+
+{{< embed plotter.ipynb#w2-scatter >}}
+
+## Pairplot - 3 {.r-stretch}
+
+{{< embed plotter.ipynb#w3-scatter >}}
+
+## Pairplot - 4 {.r-stretch}
+
+{{< embed plotter.ipynb#w4-scatter >}}
+
+## Pairplot - 5 {.r-stretch}
+
+{{< embed plotter.ipynb#w5-scatter >}}
+
+## Sensitivity {.r-stretch}
+
+![](output.png)
+
