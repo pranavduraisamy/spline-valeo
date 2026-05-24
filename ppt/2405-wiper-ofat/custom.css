@@ -1,0 +1,14 @@
+.slide-logo {
+  height: 100px !important;
+  max-width: unset !important;
+  max-height: unset !important;
+  z-index: -999 !important;
+}
+
+.gradient-border-box {
+    border: 5px solid;
+    border-image-slice: 1;
+    border-width: 5px;
+    border-image-source: linear-gradient(to right, #1F77B4, rgba(255, 255, 255, 0));
+    border-radius: 10px;
+}

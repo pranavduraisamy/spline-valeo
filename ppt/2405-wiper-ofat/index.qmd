@@ -1,0 +1,108 @@
+---
+author: Pranav
+execute: 
+    freeze: true
+format: 
+    revealjs:
+        theme: [serif,custom.scss]
+        slide-number: true
+        css: custom.css
+        transition: slide
+        transition-speed: default
+        chalkboard: true
+        margin: 0.1
+---
+
+# Parametric Study - Wiper cases - 10% Bounds
+
+## Design Space for DoE
+
+Density (1.23) = 1.107 to 1.353 g/cm^3^ 
+
+Young's Modulus (3.605) = 3.24 to 3.96 MPa
+
+Radius (2.43) = 2.187 to 2.673 mm
+
+Twist in End Vector (0) = -10° to 10°
+
+End Vector Deviation (0) = 0° to 10°
+
+Length (163.32) = 146.988 to 179.652 mm
+
+Sampled using LHS
+
+
+## Wiper Position 1 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w1-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w1-doe-error >}}
+:::
+::::
+
+## Wiper Position 2 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w2-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w2-doe-error >}}
+:::
+::::
+
+## Wiper Position 3 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w3-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w3-doe-error >}}
+:::
+::::
+
+## Wiper Position 4 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w4-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w4-doe-error >}}
+:::
+::::
+
+## Wiper Position 5 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w5-main >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w5-doe-error >}}
+:::
+::::
+
+## Pairplot - 1 {auto-stretch="true"}
+
+{{< embed plotter.ipynb#w1-scatter >}}
+
+## Pairplot - 2 {.r-stretch}
+
+{{< embed plotter.ipynb#w2-scatter >}}
+
+## Pairplot - 3 {.r-stretch}
+
+{{< embed plotter.ipynb#w3-scatter >}}
+
+## Pairplot - 4 {.r-stretch}
+
+{{< embed plotter.ipynb#w4-scatter >}}
+
+## Pairplot - 5 {.r-stretch}
+
+{{< embed plotter.ipynb#w5-scatter >}}
+
+## Sensitivity {.r-stretch}
+
+![](output.png)
+
