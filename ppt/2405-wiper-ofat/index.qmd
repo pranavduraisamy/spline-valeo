@@ -13,21 +13,18 @@ format:
         margin: 0.1
 ---
 
-# Parametric Study - Wiper cases - 10% Bounds
+# OFAT Study - Wiper cases - 10% Bounds
 
-## Design Space for DoE
+## Design Space for OFAT
 
-Density (1.23) = 1.107 to 1.353 g/cm^3^ 
-
-Young's Modulus (3.605) = 3.24 to 3.96 MPa
-
-Radius (2.43) = 2.187 to 2.673 mm
-
-Twist in End Vector (0) = -10° to 10°
-
-End Vector Deviation (0) = 0° to 10°
-
-Length (163.32) = 146.988 to 179.652 mm
+| Parameter | -10% | -05% | +00% | +05% | +10% |
+|---|---|---|---|---|---|
+| Density g/cm^3^ | 1.107 | 1.167 | 1.23 | 1.292 | 1.353 |
+| Young's Modulus MPa | 3.24 | 3.424 | 3.605 | 3.785 | 3.96 |
+| Radius mm | 2.187 | 2.309 | 2.43 | 2.551 | 2.673 |
+| Twist deg | -10 | -5 | 0 | 5 | 10 |
+| Coner Angle deg | -10 | -5 | 0 | 5 | 10 |
+| Length mm | 146.98 | 155.15 | 163.32 | 171.49 | 179.65 |
 
 Sampled using LHS
 
@@ -42,6 +39,10 @@ Sampled using LHS
 :::
 ::::
 
+## Pairplot - 1 {auto-stretch="true"}
+
+{{< embed plotter.ipynb#w1-scatter >}}
+
 ## Wiper Position 2 {.r-stretch}
 :::: {.columns}
 ::: {.column width="58%"}
@@ -51,6 +52,10 @@ Sampled using LHS
 {{< embed plotter.ipynb#w2-doe-error >}}
 :::
 ::::
+
+## Pairplot - 2 {.r-stretch}
+
+{{< embed plotter.ipynb#w2-scatter >}}
 
 ## Wiper Position 3 {.r-stretch}
 :::: {.columns}
@@ -62,6 +67,10 @@ Sampled using LHS
 :::
 ::::
 
+## Pairplot - 3 {.r-stretch}
+
+{{< embed plotter.ipynb#w3-scatter >}}
+
 ## Wiper Position 4 {.r-stretch}
 :::: {.columns}
 ::: {.column width="58%"}
@@ -72,6 +81,10 @@ Sampled using LHS
 :::
 ::::
 
+## Pairplot - 4 {.r-stretch}
+
+{{< embed plotter.ipynb#w4-scatter >}}
+
 ## Wiper Position 5 {.r-stretch}
 :::: {.columns}
 ::: {.column width="58%"}
@@ -81,22 +94,6 @@ Sampled using LHS
 {{< embed plotter.ipynb#w5-doe-error >}}
 :::
 ::::
-
-## Pairplot - 1 {auto-stretch="true"}
-
-{{< embed plotter.ipynb#w1-scatter >}}
-
-## Pairplot - 2 {.r-stretch}
-
-{{< embed plotter.ipynb#w2-scatter >}}
-
-## Pairplot - 3 {.r-stretch}
-
-{{< embed plotter.ipynb#w3-scatter >}}
-
-## Pairplot - 4 {.r-stretch}
-
-{{< embed plotter.ipynb#w4-scatter >}}
 
 ## Pairplot - 5 {.r-stretch}
 
