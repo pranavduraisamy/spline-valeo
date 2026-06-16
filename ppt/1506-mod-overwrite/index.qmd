@@ -1,0 +1,220 @@
+---
+title: PyElastica results with modified hollow section
+author-meta: Pranav
+execute: 
+    freeze: true
+format: 
+    revealjs:
+        theme: [serif,custom.scss]
+        slide-number: true
+        css: custom.css
+        transition: slide
+        transition-speed: default
+        chalkboard: true
+        margin: 0.1
+---
+
+## Cosserat Rod Theory {.smaller}
+
+**Conservation of Linear Momentum:** 
+
+$$
+\small{\rho A \cdot \partial_t^2 \bar{\mathbf{r}} = \overbrace{\partial_s \left( \frac{\mathbf{Q}^T \mathbf{S} \boldsymbol{\sigma}}{e} \right)}^{\substack{\text{internal shear/} \\ \text{stretch force}}} + \overbrace{e \ \bar{\mathbf{f}}}^{\substack{\text{external} \\ \text{force}}} }
+$$
+
+**Conservation of Angular Momentum:** 
+
+$$
+\small{\begin{align}\frac{\rho \mathbf{I}}{e} \cdot \partial_t \boldsymbol{\omega}&=\overbrace{\partial_s \left( \frac{\mathbf{B} \boldsymbol{\kappa}}{e^3} \right) + \frac{\boldsymbol{\kappa} \times \mathbf{B} \boldsymbol{\kappa}}{e^3}}^{\text{internal bend/twist couple}}+\overbrace{\left( \mathbf{Q}\frac{\bar{\mathbf{r}}_s}{e} \times \mathbf{S} \boldsymbol{\sigma} \right)}^{\substack{\text{internal shear/} \\ \text{stretch couple}}}+\overbrace{\left( \rho \mathbf{I} \cdot \frac{\boldsymbol{\omega}}{e} \right) \times \boldsymbol{\omega}}^{\text{Lagrangian transport}}+\overbrace{\frac{\rho \mathbf{I} \boldsymbol{\omega}}{e^2} \cdot \partial_t e}^{\text{unsteady dilation}}+\overbrace{e \ \mathbf{c}}^{\substack{\text{external} \\ \text{couple}}}
+\end{align}}
+$$
+
+By solving these equations with suitable boundary conditions, we can model the dynamics of a single Cosserat elastic rod.
+
+::: aside
+M. Tummers, et. al., "Cosserat Rod Modeling of Continuum Robots from Newtonian and Lagrangian Perspectives," in IEEE Transactions on Robotics, vol. 39, no. 3, pp. 2360-2378, June 2023, doi: 10.1109/TRO.2023.3238171.
+:::
+
+## Properties
+
+Density = 1.230 g/cm^3^ (Assuming as Natural Rubber)
+
+Young's Modulus = 3.605 MPa
+
+Shear Modulus = 1.209 MPa
+
+Poisson's Ratio = 0.49
+
+Radius = 2.43 mm (Assuming Equivalent Mass)
+
+No. of Elements = 100
+
+## Position 1 - Case 1 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p1c1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p1c1e >}}
+:::
+::::
+
+## Position 1 - Case 2 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p1c2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p1c2e >}}
+:::
+::::
+
+## Position 1 - Case 3 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p1c3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p1c3e >}}
+:::
+::::
+
+## Position 2 - Case 1 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p2c1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p2c1e >}}
+:::
+::::
+
+## Position 2 - Case 2 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p2c2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p2c2e >}}
+:::
+::::
+
+## Position 2 - Case 3 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p2c3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p2c3e >}}
+:::
+::::
+
+## Position 3 - Case 1 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p3c1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p3c1e >}}
+:::
+::::
+
+## Position 3 - Case 2 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p3c2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p3c2e >}}
+:::
+::::
+
+## Position 3 - Case 3 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p3c3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p3c3e >}}
+:::
+::::
+
+## Position 4 - Case 1 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p4c1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p4c1e >}}
+:::
+::::
+
+## Position 4 - Case 2 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p4c2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p4c2e >}}
+:::
+::::
+
+## Position 4 - Case 3 {.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#p4c3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#p4c3e >}}
+:::
+:::: 
+
+## Wiper Position 1{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w1 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w1e >}}
+:::
+::::
+
+## Wiper Position 2{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w2 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w2e >}}
+:::
+::::
+
+## Wiper Position 3{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w3 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w3e >}}
+:::
+::::
+
+## Wiper Position 4{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w4 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w4e >}}
+:::
+::::
+
+## Wiper Position 5{.r-stretch}
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed plotter.ipynb#w5 >}}
+:::
+::: {.column width="42%"}
+{{< embed plotter.ipynb#w5e >}}
+:::
+::::
