@@ -1,0 +1,357 @@
+---
+author: Pranav
+execute: 
+    freeze: true
+format: 
+    revealjs:
+        theme: [serif,custom.scss]
+        slide-number: true
+        css: custom.css
+        transition: slide
+        transition-speed: default
+        chalkboard: true
+        margin: 0.1
+---
+
+# {.center}
+
+<div style="text-align:center;">
+
+<div style="font-size: 1.8em; font-weight: 600;">
+Proposal of Shape Prediction of Wiper Hose Geometry<br>
+for Valeo Pvt. Ltd., Chennai, IN
+</div>
+
+<br/>
+
+<div style="font-size: 1.1em; font-weight: 500;">
+Project Coordinators
+</div>
+
+<div style="font-size: 0.95em; margin-top: 0.5em;">
+Prof. G. Saravana Kumar, IIT Madras<br>
+Prof. D. Davidson Jebaseelan, VIT Chennai
+</div>
+
+</div>
+
+## Problem Statement
+
+ - Determining [the equilibrium geometry of flexible automotive wiper hoses]{style="color:red;"} under specified routing constraints remains a key challenge in product design.
+
+ - [A computational mechanics-based framework]{style="color:red;"} is needed to accurately evaluate hose geometry, enabling improved packaging validation.
+
+## Basic Hermite Spline
+
+ - We have End points ($p_0$, $p_1$), End vectors ($v_0$, $v_1$)
+
+ - Cubic Spline is a natural choice to construct a curve
+
+$$
+\begin{aligned}
+p_t
+&=
+(2t^3-3t^2+1)p_0 \\
+&\quad + (t^3-2t^2+t)v_0 \\
+&\quad + (-2t^3+3t^2)p_1 \\
+&\quad + (t^3-t^2)v_1,
+\qquad 0 \le t \le 1.
+\end{aligned}
+$$
+
+## Basic Hermite Spline - Output
+
+![](img/basic.png){fig-align="center"}
+
+## Arc Length Constrained Hermite {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+$$
+\min_x \; f(x)
+=
+L\!\left(
+\operatorname{Hermite}
+\left(
+p_0,\,
+p_1,\,
+x\,u_0,\,
+x\,u_1
+\right)
+\right)
+-
+L(\text{Prototype})
+$$
+
+where
+
+$$
+\begin{aligned}
+L(\cdot) &:\ \text{Length function},\\
+p_0 &:\ \text{Starting point},\\
+p_1 &:\ \text{Ending point},\\
+u_0 &:\ \text{Unit tangent at } p_0,\\
+u_1 &:\ \text{Unit tangent at } p_1,\\
+x &:\ \text{Magnitude applied to } u_0 \text{ and } u_1 \\
+  &\ \text{ (optimization variable)}.
+\end{aligned}
+$$
+
+- [Link for all cases](https://pranavduraisamy.github.io/spline-valeo/ppt/1411-arc-len-herm){style="color:blue;"}
+
+:::
+
+::: {.column width="40%"}
+
+![](img/Picture1.png){.absolute top="21%" left="63%" width="300"}
+
+:::
+
+::::
+
+## Cosserat Rod Theory {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Models a slender structure as a deformable centerline with an attached local reference frame (directors)
+
+- Captures all deformation modes: [Bending, Twisting, Stretching, Shearing]{style="color:red;"}
+
+- Each cross-section possesses [6 DOF: 3T+3R]{style="color:red;"}
+
+- Equilibrium configuration is obtained by [satisfying conservation of linear and angular momentum along the rod]{style="color:red;"}
+
+- [Link for all cases - Prototype](https://pranavduraisamy.github.io/spline-valeo/ppt/1411-pyelastica-basic){style="color:blue;"}
+
+- [Link for all cases - Wiper](https://pranavduraisamy.github.io/spline-valeo/ppt/2101-wiper-data){style="color:blue;"}
+
+- [Link for PyElastica Docs and Theory](https://www.cosseratrods.org/cosserat_rods/theory/){style="color:blue;"}
+
+
+:::
+
+::: {.column width="50%"}
+
+![](img/cosserat_rod_continuum.png)
+
+:::
+
+::::
+
+## Cosserat Rod Theory {.smaller}
+
+**Conservation of Linear Momentum:** 
+
+$$
+\small{\rho A \cdot \partial_t^2 \bar{\mathbf{r}} = \overbrace{\partial_s \left( \frac{\mathbf{Q}^T \mathbf{S} \boldsymbol{\sigma}}{e} \right)}^{\substack{\text{internal shear/} \\ \text{stretch force}}} + \overbrace{e \ \bar{\mathbf{f}}}^{\substack{\text{external} \\ \text{force}}} }
+$$
+
+**Conservation of Angular Momentum:** 
+
+$$
+\small{\begin{align}\frac{\rho \mathbf{I}}{e} \cdot \partial_t \boldsymbol{\omega}&=\overbrace{\partial_s \left( \frac{\mathbf{B} \boldsymbol{\kappa}}{e^3} \right) + \frac{\boldsymbol{\kappa} \times \mathbf{B} \boldsymbol{\kappa}}{e^3}}^{\text{internal bend/twist couple}}+\overbrace{\left( \mathbf{Q}\frac{\bar{\mathbf{r}}_s}{e} \times \mathbf{S} \boldsymbol{\sigma} \right)}^{\substack{\text{internal shear/} \\ \text{stretch couple}}}+\overbrace{\left( \rho \mathbf{I} \cdot \frac{\boldsymbol{\omega}}{e} \right) \times \boldsymbol{\omega}}^{\text{Lagrangian transport}}+\overbrace{\frac{\rho \mathbf{I} \boldsymbol{\omega}}{e^2} \cdot \partial_t e}^{\text{unsteady dilation}}+\overbrace{e \ \mathbf{c}}^{\substack{\text{external} \\ \text{couple}}}
+\end{align}}
+$$
+
+By solving these equations with suitable boundary conditions, we can model the dynamics of a single Cosserat elastic rod.
+
+::: aside
+M. Tummers, et. al., "Cosserat Rod Modeling of Continuum Robots from Newtonian and Lagrangian Perspectives," in IEEE Transactions on Robotics, vol. 39, no. 3, pp. 2360-2378, June 2023, doi: 10.1109/TRO.2023.3238171.
+:::
+
+## Properties
+
+Density = 1.230 g/cm^3^ (Assuming as Natural Rubber)
+
+Young's Modulus = 3.605 MPa
+
+Shear Modulus = 1.209 MPa
+
+Poisson's Ratio = 0.49
+
+Radius = 2.43 mm (Assuming Equivalent Mass)
+
+No. of Elements = 100
+
+## PyElastica - Prototype {.r-stretch}
+
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed ../1411-pyelastica-basic/plotter.ipynb#p2c1 >}}
+:::
+::: {.column width="42%"}
+{{< embed ../1411-pyelastica-basic/plotter.ipynb#p2c1e >}}
+:::
+::::
+
+## PyElastica - Wiper {.r-stretch}
+
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed ../2101-wiper-data/plotter.ipynb#w5 >}}
+:::
+::: {.column width="42%"}
+{{< embed ../2101-wiper-data/plotter.ipynb#w5e >}}
+:::
+::::
+
+## PyElastica - OFAT Analysis {.smaller}
+
+ - Varies one input parameter at a time, keeping all others constant
+
+ - Used to study sensitivity of outputs to individual factors
+
+ - Helps identify dominant variables influencing system response
+
+ - Useful for initial screening of parameters before advanced methods
+
+ - Computationally cheaper but may miss interaction behavior in complex systems
+
+ - [Link for all cases - Prototype](https://pranavduraisamy.github.io/spline-valeo/ppt/2411-ofat-sens){style="color:blue;"}
+
+ - [Link for all cases - Wiper](https://pranavduraisamy.github.io/spline-valeo/ppt/2405-wiper-ofat){style="color:blue;"}
+
+## Design Space for OFAT
+
+| Parameter | -10% | -05% | +00% | +05% | +10% |
+|---|---|---|---|---|---|
+| Density g/cm^3^ | 1.107 | 1.167 | 1.23 | 1.292 | 1.353 |
+| Young's Modulus MPa | 3.24 | 3.424 | 3.605 | 3.785 | 3.96 |
+| Radius mm | 2.187 | 2.309 | 2.43 | 2.551 | 2.673 |
+| Twist deg | -10 | -5 | 0 | 5 | 10 |
+| Cone Angle deg | -10 | -5 | 0 | 5 | 10 |
+| Length mm | 146.98 | 155.15 | 163.32 | 171.49 | 179.65 |
+
+## PyElastica - OFAT - Prototype
+
+{{< embed ../2411-ofat-sens/plotter.ipynb#p2c1-rad >}}
+
+## PyElastica - OFAT - Wiper
+
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed ../2405-wiper-ofat/plotter.ipynb#w4-main >}}
+:::
+::: {.column width="42%"}
+{{< embed ../2405-wiper-ofat/plotter.ipynb#w4-doe-error >}}
+:::
+::::
+
+## PyElastica - OFAT - Pairplot
+
+{{< embed ../2405-wiper-ofat/plotter.ipynb#w4-scatter >}}
+
+## PyElastica - OFAT - Sensitivity
+
+![](img/wiper-ofat-sens.png)
+
+## PyElastica - DoE Study
+
+ - Design of Experiments (DOE) used for systematic exploration of parameter space
+
+ - Ensures efficient sampling across all input variables simultaneously
+
+ - Latin Hypercube Sampling (LHS) divides each variable range into equal probability intervals
+
+ - One sample is drawn from each interval → ensures better space-filling than random sampling
+
+ - Captures global trends and interactions with fewer simulations
+
+ - Reduces computational cost compared to full factorial design
+
+ - [Link for all cases - Prototype](https://pranavduraisamy.github.io/spline-valeo/ppt/2204-doe-full-10p){style="color:blue;"}
+
+ - [Link for all cases - Wiper](https://pranavduraisamy.github.io/spline-valeo/ppt/3004-wiper-doe){style="color:blue;"}
+
+## Design Space for DoE
+
+Density (1.23) = 1.107 to 1.353 g/cm^3^ 
+
+Young's Modulus (3.605) = 3.24 to 3.96 MPa
+
+Radius (2.43) = 2.187 to 2.673 mm
+
+Twist in End Vector (0) = -10° to 10°
+
+End Vector Deviation (0) = 0° to 10°
+
+Sampled using LHS
+
+## PyElastica - DoE - Prototype
+
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed ../2204-doe-full-10p/plotter10p.ipynb#p1c1-main >}}
+:::
+::: {.column width="42%"}
+{{< embed ../2204-doe-full-10p/plotter10p.ipynb#p1c1-doe-error >}}
+:::
+::::
+
+## PyElastica - DoE - Wiper
+
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed ../3004-wiper-doe/plotter.ipynb#w4-main >}}
+:::
+::: {.column width="42%"}
+{{< embed ../3004-wiper-doe/plotter.ipynb#w4-doe-error >}}
+:::
+::::
+
+## PyElastica - DoE - Pairplot
+
+{{< embed ../3004-wiper-doe/plotter.ipynb#w4-scatter >}}
+
+## PyElastica - DoE - Sensitivity
+
+![](img/wiper-doe-sens.png)
+
+## Hollow Cross-Section Adaptation in PyElastica {.smaller}
+
+- PyElastica natively supports only [solid circular rods]{style="color:red;"}
+
+- A solid rod is first initialized and then re-parameterized as a [hollow tube]{style="color:red;"}
+
+- Cross-sectional properties are recomputed analytically  
+  $A = \pi (R_o^2 - R_i^2)$  
+  $I = \frac{\pi}{4}(R_o^4 - R_i^4)$  
+
+- Stiffness matrices are overwritten  
+  - Shear stiffness updated using hollow cross-sectional area  
+  - Bending stiffness updated using second moments of inertia  
+
+- Mass and inertia tensors are redefined  
+  - Element-wise mass computed from hollow volume  
+  - Rotational inertia updated for annular geometry  
+
+- Enables a [hollow hose representation without modifying the core solver]{style="color:red;"}
+
+ - [Link for all cases - Prototype and Wiper](https://pranavduraisamy.github.io/spline-valeo/ppt/1506-mod-overwrite){style="color:blue;"}
+
+## PyElastica - Hollow - Prototype {.r-stretch}
+
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed ../1506-mod-overwrite/plotter.ipynb#p1c2 >}}
+:::
+::: {.column width="42%"}
+{{< embed ../1506-mod-overwrite/plotter.ipynb#p1c2e >}}
+:::
+::::
+
+## PyElastica - Hollow - Wiper {.r-stretch}
+
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed ../1506-mod-overwrite/plotter.ipynb#w4 >}}
+:::
+::: {.column width="42%"}
+{{< embed ../1506-mod-overwrite/plotter.ipynb#w4e >}}
+:::
+::::
+
