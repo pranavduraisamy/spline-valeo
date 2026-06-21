@@ -243,13 +243,13 @@ No. of Elements = 100
 
 ## PyElastica - OFAT - Pairplot
 
-{{< embed ../2405-wiper-ofat/plotter.ipynb#w4-scatter >}}
+![](img/pyelas-ofat-pairplot.png)
 
 ## PyElastica - OFAT - Sensitivity
 
 ![](img/wiper-ofat-sens.png)
 
-## PyElastica - DoE Study
+## PyElastica - DoE Study {.smaller}
 
  - Design of Experiments (DOE) used for systematic exploration of parameter space
 
@@ -305,7 +305,7 @@ Sampled using LHS
 
 ## PyElastica - DoE - Pairplot
 
-{{< embed ../3004-wiper-doe/plotter.ipynb#w4-scatter >}}
+![](img/pyelas-doe-pairplot.png)
 
 ## PyElastica - DoE - Sensitivity
 
@@ -317,9 +317,7 @@ Sampled using LHS
 
 - A solid rod is first initialized and then re-parameterized as a [hollow tube]{style="color:red;"}
 
-- Cross-sectional properties are recomputed analytically  
-  $A = \pi (R_o^2 - R_i^2)$  
-  $I = \frac{\pi}{4}(R_o^4 - R_i^4)$  
+- Cross-sectional properties are recomputed analytically 
 
 - Stiffness matrices are overwritten  
   - Shear stiffness updated using hollow cross-sectional area  
@@ -331,9 +329,16 @@ Sampled using LHS
 
 - Enables a [hollow hose representation without modifying the core solver]{style="color:red;"}
 
+## Hollow Cross-Section Adaptation in PyElastica - Links
+
  - [Link for all cases - Prototype and Wiper](https://pranavduraisamy.github.io/spline-valeo/ppt/1506-mod-overwrite){style="color:blue;"}
 
-## PyElastica - Hollow - Prototype {.r-stretch}
+ - [Link for all cases - DoE - Prototype](https://pranavduraisamy.github.io/spline-valeo/ppt/2106-doe-full-10p-mod){style="color:blue;"}
+
+ - [Link for all cases - DoE - Wiper](https://pranavduraisamy.github.io/spline-valeo/ppt/2106-wiper-doe-mod){style="color:blue;"}
+
+
+## PyElastica (Hollow) - Prototype {.r-stretch}
 
 :::: {.columns}
 ::: {.column width="58%"}
@@ -344,7 +349,7 @@ Sampled using LHS
 :::
 ::::
 
-## PyElastica - Hollow - Wiper {.r-stretch}
+## PyElastica (Hollow) - Wiper {.r-stretch}
 
 :::: {.columns}
 ::: {.column width="58%"}
@@ -355,3 +360,32 @@ Sampled using LHS
 :::
 ::::
 
+## PyElastica (Hollow) - DoE - Prototype
+
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed ../2106-doe-full-10p-mod/plotter10p.ipynb#p4c1-main >}}
+:::
+::: {.column width="42%"}
+{{< embed ../2106-doe-full-10p-mod/plotter10p.ipynb#p4c1-doe-error >}}
+:::
+::::
+
+## PyElastica (Hollow) - DoE - Wiper
+
+:::: {.columns}
+::: {.column width="58%"}
+{{< embed ../2106-wiper-doe-mod/plotter.ipynb#w5-main >}}
+:::
+::: {.column width="42%"}
+{{< embed ../2106-wiper-doe-mod/plotter.ipynb#w5-doe-error >}}
+:::
+::::
+
+## PyElastica (Hollow) - DoE - Pairplot
+
+![](img/pyelas-ofat-pairplot-mod.png)
+
+## PyElastica (Hollow) - DoE - Sensitivity
+
+![](img/wiper-doe-sens-mod.png)
